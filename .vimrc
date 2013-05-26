@@ -19,3 +19,4 @@ set shiftwidth=4
 set autoindent
 
 set showcmd         " Show the command being type
+set clipboard=unnamedplus   "Set the clipboard as the default storage of copy
