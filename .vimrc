@@ -18,3 +18,4 @@ set softtabstop=4
 set shiftwidth=4
 set autoindent
 
+set showcmd         " Show the command being type
