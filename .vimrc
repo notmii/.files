@@ -7,7 +7,6 @@ set background=dark
 colorscheme solarized
 
 " ======= Personal Settings ========
-syntax on
 set number          " Show line number
 set mouse=a		    " Enable mouse interaction
 set hlsearch        " Highlight search
