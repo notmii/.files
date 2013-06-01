@@ -1,10 +1,10 @@
 " Pathogen - vim plugin manager
 execute pathogen#infect() 
 
-" ====== Theme Settings ===========
+" ====== Theme Settings ============
 syntax enable
-set background=dark
-colorscheme solarized
+colorscheme desert 
+filetype plugin on
 
 " ======= Personal Settings ========
 set number          " Show line number
@@ -17,5 +17,10 @@ set softtabstop=4
 set shiftwidth=4
 set autoindent
 
-set showcmd         " Show the command being type
+set showcmd                 " Show the command being type
 set clipboard=unnamedplus   "Set the clipboard as the default storage of copy
+
+" ======= Power Line Settings =======
+" let g:Powerline_symbols = 'fancy'
+set laststatus=2
+set term=xterm-256color
