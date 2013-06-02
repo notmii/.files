@@ -4,7 +4,7 @@ execute pathogen#infect()
 " ======= Power Line Settings =======
 " let g:Powerline_symbols = 'fancy'
 set laststatus=2
-set term=xterm-256color
+set term=xterm-256color     " [ builtin_xterm | xterm-256color ]
 
 " ====== Theme Settings ============
 syntax enable
@@ -23,5 +23,5 @@ set shiftwidth=4
 set autoindent
 
 set showcmd                 " Show the command being type
-set clipboard=unnamedplus   "Set the clipboard as the default storage of copy
-set nowrap
+set clipboard=unnamedplus   " Set the clipboard as the default storage of copy
+set nowrap                  " Set to no wrapping
