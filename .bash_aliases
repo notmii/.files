@@ -1,0 +1,1 @@
+alias lah='la -h' 
