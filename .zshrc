@@ -45,6 +45,6 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-source .bash_aliases
-source .bash_customs
-export PATH="$PATH:/home/john/Projects/arcanist/bin"
+source $HOME/.bash_aliases
+source $HOME/.bash_customs
+export PATH="$PATH:$HOME/Projects/arcanist/bin"
