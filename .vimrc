@@ -25,3 +25,18 @@ set autoindent
 set showcmd                 " Show the command being type
 set clipboard=unnamedplus   " Set the clipboard as the default storage of copy
 set nowrap                  " Set to no wrapping
+
+" ======= PHP Linting ========
+set makeprg=php\ -l\ %
+set errorformat=%m\ in\ %f\ on\ line\ %l
+
+" ======= Code Folding =======
+set foldmethod=indent
+set foldcolumn=2
+
+
+" ====== Execute Commands on file Open =======
+if !exists("autocommand_loaded")
+    let autocommand_loaded = 1
+    autocmd zM
+endif

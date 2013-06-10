@@ -1,4 +1,3 @@
-alias lah='la -h' 
 srch() {
     grep --color=auto -srn --exclude-dir=public/build --exclude=tags $1 .; find -name $1
 }
