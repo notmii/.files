@@ -38,5 +38,4 @@ set foldcolumn=2
 " ====== Execute Commands on file Open =======
 if !exists("autocommand_loaded")
     let autocommand_loaded = 1
-    autocmd zM
 endif
