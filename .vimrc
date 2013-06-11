@@ -29,7 +29,7 @@ set nowrap                  " Set to no wrapping
 " ====== PHP Lint ======
 set makeprg=php\ -l\ %
 set errorformat=%m\ in\ %f\ on\ line\ %l
-=======
+
 " ======= PHP Linting ========
 set makeprg=php\ -l\ %
 set errorformat=%m\ in\ %f\ on\ line\ %l
