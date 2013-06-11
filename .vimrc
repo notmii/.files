@@ -25,3 +25,7 @@ set autoindent
 set showcmd                 " Show the command being type
 set clipboard=unnamedplus   " Set the clipboard as the default storage of copy
 set nowrap                  " Set to no wrapping
+
+" ====== PHP Lint ======
+set makeprg=php\ -l\ %
+set errorformat=%m\ in\ %f\ on\ line\ %l

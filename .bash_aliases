@@ -3,6 +3,6 @@ srch() {
 }
 
 alias search=srch
-alias arcp="arc diff --preview --allow-untracked production"
+alias arcd="arc diff --preview --allow-untracked production"
 alias lah='la -h' 
 alias las='ls -ah'
