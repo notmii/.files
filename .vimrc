@@ -29,3 +29,17 @@ set nowrap                  " Set to no wrapping
 " ====== PHP Lint ======
 set makeprg=php\ -l\ %
 set errorformat=%m\ in\ %f\ on\ line\ %l
+=======
+" ======= PHP Linting ========
+set makeprg=php\ -l\ %
+set errorformat=%m\ in\ %f\ on\ line\ %l
+
+" ======= Code Folding =======
+set foldmethod=indent
+set foldcolumn=2
+
+
+" ====== Execute Commands on file Open =======
+if !exists("autocommand_loaded")
+    let autocommand_loaded = 1
+endif
