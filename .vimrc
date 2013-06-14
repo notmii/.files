@@ -1,4 +1,3 @@
-" Pathogen - vim plugin manager
 execute pathogen#infect() 
 
 " ======= Power Line Settings =======
@@ -15,6 +14,7 @@ colorscheme desert
 set number          " Show line number
 set mouse=a		    " Enable mouse interaction
 set hlsearch        " Highlight search
+set incsearch       " Search as you type
 
 set expandtab		" Use space instead of tab
 set tabstop=4		" Size of tab
@@ -26,18 +26,19 @@ set showcmd                 " Show the command being type
 set clipboard=unnamedplus   " Set the clipboard as the default storage of copy
 set nowrap                  " Set to no wrapping
 
-" ====== PHP Lint ======
-set makeprg=php\ -l\ %
-set errorformat=%m\ in\ %f\ on\ line\ %l
-
 " ======= PHP Linting ========
 set makeprg=php\ -l\ %
 set errorformat=%m\ in\ %f\ on\ line\ %l
 
 " ======= Code Folding =======
-set foldmethod=indent
-set foldcolumn=2
+set foldmarker={,}
+set foldmethod=marker
+set foldcolumn=3
 
+" ======= Quick List 'Vim Searching' ========
+copen
+set grepprg=grep\ -rns
+set grepformat=%f:%l:%m
 
 " ====== Execute Commands on file Open =======
 if !exists("autocommand_loaded")

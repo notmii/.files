@@ -1,5 +1,5 @@
 srch() {
-    grep --color=auto -srn --exclude-dir=public/build --exclude=tags $1 .; find -name $1
+    grep --color=auto -srn --exclude-dir=public/build --exclude=tags $1 .; find -name $1 -t
 }
 
 alias search=srch
