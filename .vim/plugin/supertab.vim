@@ -1,1 +1,0 @@
-../bundle/supertab-plugin/plugin/supertab.vim

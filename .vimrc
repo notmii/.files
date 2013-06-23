@@ -1,4 +1,4 @@
-execute pathogen#infect() 
+execute pathogen#infect()
 
 " ======= Power Line Settings =======
 " let g:Powerline_symbols = 'fancy'
@@ -36,9 +36,17 @@ set foldmethod=marker
 set foldcolumn=3
 
 " ======= Quick List 'Vim Searching' ========
-copen
+" copen
 set grepprg=grep\ -rns
 set grepformat=%f:%l:%m
+
+" ====== NEO Complete with cache and Autocomplete setting =============
+let g:neocomplcache_enable_at_startup = 1
+set omnifunc=syntaxcomplete#Complete
+set complete=.,i,t
+set completeopt=longest,menuone
+inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+" inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
 
 " ====== Execute Commands on file Open =======
 if !exists("autocommand_loaded")
