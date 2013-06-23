@@ -19,3 +19,9 @@
 [submodule ".vim/bundle/vim-color-lucius"]
 	path = .vim/bundle/vim-color-lucius
 	url = git://github.com/jonathanfilip/vim-lucius.git
+[submodule ".vim/bundle/supertab-plugin"]
+	path = .vim/bundle/supertab-plugin
+	url = git://github.com/ervandew/supertab.git
+[submodule ".vim/bundle/delimitMate-plugin"]
+	path = .vim/bundle/delimitMate-plugin
+	url = https://github.com/Raimondi/delimitMate.git
