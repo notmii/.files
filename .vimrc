@@ -37,8 +37,10 @@ set foldcolumn=3
 
 " ======= Quick List 'Vim Searching' ========
 copen
-set grepprg=grep\ -rns
+set grepprg=grep\ -rns\ --exclude=tags\ --exclude-dir=\"public\/build\"
 set grepformat=%f:%l:%m
+nnoremap <C-f> :execute 'grep ' . input("Find:") ' .'<cr>
+nnoremap <C-F> /
 
 " ====== Execute Commands on file Open =======
 if !exists("autocommand_loaded")
