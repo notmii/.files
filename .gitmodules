@@ -19,3 +19,15 @@
 [submodule ".vim/bundle/vim-color-lucius"]
 	path = .vim/bundle/vim-color-lucius
 	url = git://github.com/jonathanfilip/vim-lucius.git
+[submodule ".vim/bundle/supertab-plugin"]
+	path = .vim/bundle/supertab-plugin
+	url = git://github.com/ervandew/supertab.git
+[submodule ".vim/bundle/delimitMate-plugin"]
+	path = .vim/bundle/delimitMate-plugin
+	url = https://github.com/Raimondi/delimitMate.git
+[submodule ".vim/bundle/neocomplcache-plugin"]
+	path = .vim/bundle/neocomplcache-plugin
+	url = https://github.com/vim-scripts/neocomplcache.git
+[submodule ".vim/bundle/grep-plugin"]
+	path = .vim/bundle/grep-plugin
+	url = https://github.com/vim-scripts/grep.vim.git
