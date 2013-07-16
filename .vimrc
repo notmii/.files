@@ -25,6 +25,10 @@ set autoindent
 set showcmd                 " Show the command being type
 set clipboard=unnamedplus   " Set the clipboard as the default storage of copy
 set nowrap                  " Set to no wrapping
+set cursorline
+set cursorcolumn
+highlight CursorColumn  ctermbg=236
+highlight CursorLine    cterm=none ctermbg=236
 
 " ======= PHP Linting ========
 set makeprg=php\ -l\ %
