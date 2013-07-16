@@ -12,7 +12,7 @@ colorscheme desert
 
 " ======= Personal Settings ========
 set number          " Show line number
-set mouse=a		    " Enable mouse interaction
+set mouse=		    " Enable mouse interaction
 set hlsearch        " Highlight search
 set incsearch       " Search as you type
 
@@ -27,8 +27,16 @@ set clipboard=unnamedplus   " Set the clipboard as the default storage of copy
 set nowrap                  " Set to no wrapping
 set cursorline
 set cursorcolumn
+
+" ======= Corssaire Mode ==========
 highlight CursorColumn  ctermbg=236
 highlight CursorLine    cterm=none ctermbg=236
+
+set cursorcolumn
+set cursorline
+
+highlight CursorLine        ctermbg=236 cterm=none
+highlight CursorColumn      ctermbg=236
 
 " ======= PHP Linting ========
 set makeprg=php\ -l\ %
