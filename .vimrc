@@ -27,6 +27,7 @@ set clipboard=unnamedplus   " Set the clipboard as the default storage of copy
 set nowrap                  " Set to no wrapping
 set cursorline
 set cursorcolumn
+set backspace=indent,eol,start
 
 " ======= Corssaire Mode ==========
 highlight CursorColumn  ctermbg=236

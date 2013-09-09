@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
+ZSH=$HOME/configurations/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -43,8 +43,14 @@ export UPDATE_ZSH_DAYS=1
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
+alias="$HOME/configurations/.bash_aliases"
+customs="$HOME/configurations/.bash_customs"
 
 # Customize to your needs...
-source $HOME/.bash_aliases
-source $HOME/.bash_customs
-export PATH="$PATH:$HOME/Projects/arcanist/bin"
+if [[ -e $alias ]]; then
+	source $alias
+fi
+
+if [[ -e $customs ]]; then
+	source $customs
+fi
