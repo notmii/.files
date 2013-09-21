@@ -4,6 +4,12 @@ call pathogen#helptags()
 call pathogen#incubate()
 execute pathogen#infect()
 
+" ======= GUI Vim ===================
+set guioptions-=m           " Remove menu bar
+set guioptions-=T           " Remove toolbar
+set guioptions-=r           " Remove right-hand scroll bar
+set guifont=Monospace\ 7
+
 " ======= Power Line Settings =======
 " let g:Powerline_symbols = 'fancy'
 set laststatus=2
@@ -43,26 +49,20 @@ set history=1000
 set undolevels=1000
 
 " ======= Mappings ================
-map <C-j> :tabnext<CR>
-map <C-k> :tabprevious<CR>
-map <C-t> :tabnew<CR>
-map <C-w> :tabclose<CR>
-map <C-a> ggvGG
+map <silent> <C-l> :tabnext<CR>
+map <silent> <C-h> :tabprevious<CR>
+map <silent> <C-t> :tabnew<CR>
+" map <silent> <C-w> :tabclose!<CR>
+map <silent> <C-a> ggvGG
 nnoremap ; :
-nnoremap j gj
-nnoremap k gk
+map j gj
+map k gk
 
-" ======= Corssaire Mode ==========
+" ======= Crossaire Mode ==========
 set cursorline
 set cursorcolumn
 highlight CursorColumn  ctermbg=236
 highlight CursorLine    cterm=none ctermbg=236
-
-set cursorcolumn
-set cursorline
-
-highlight CursorLine        ctermbg=236 cterm=none
-highlight CursorColumn      ctermbg=236
 
 " ======= PHP Linting ========
 set makeprg=php\ -l\ %
@@ -74,11 +74,34 @@ set foldmethod=marker
 set foldcolumn=5
 
 " ======= Quick List 'Vim Searching' ========
-" copen
-set grepprg=grep\ -rns\ --exclude=tags\ --exclude-dir=\"public\/build\"
+set grepprg=grep\ -rns\ -C\ 1\ --exclude=tags\ --exclude-dir=\"public\/build\"\ $*
 set grepformat=%f:%l:%m
-nnoremap <C-f> :execute 'grep ' . input("Find:") ' .'<cr>
-nnoremap <C-S-F> /
+map <silent> <C-f> :call g:WordFind()<CR>
+
+function! g:WordFind()
+    let l:pattern = input("Find:")
+
+    if l:pattern == ''
+        return
+    endif
+
+    let l:grepCommand = 'grep -rns -C 1 --exclude=tags --exclude-dir=public/build "' . l:pattern . '" .'
+    let l:commandOutput = system(l:grepCommand)
+
+    " Output to file
+    exe 'redir! > ./temp'
+    silent echon l:commandOutput
+    let @/ = l:pattern
+    redir END
+
+
+    let oldefm = &efm
+    set efm=%f:%\\s%#%l:%m
+    execute 'silent! cgetfile ./temp'
+    :copen
+    let &efm = oldefm
+    " call delete('./temp')
+endfunction
 
 " ====== NEO Complete with cache and Autocomplete setting =============
 let g:neocomplcache_enable_at_startup = 1
