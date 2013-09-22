@@ -47,6 +47,7 @@ set wildmenu
 set title
 set history=1000
 set undolevels=1000
+set dir=~/.vim/sessions//
 
 " ======= Mappings ================
 map <silent> <C-l> :tabnext<CR>
@@ -89,18 +90,19 @@ function! g:WordFind()
     let l:commandOutput = system(l:grepCommand)
 
     " Output to file
+    call delete('./temp')
     exe 'redir! > ./temp'
     silent echon l:commandOutput
-    let @/ = l:pattern
     redir END
 
+    let @/ = l:pattern
 
     let oldefm = &efm
     set efm=%f:%\\s%#%l:%m
     execute 'silent! cgetfile ./temp'
     :copen
     let &efm = oldefm
-    " call delete('./temp')
+    call delete('./temp')
 endfunction
 
 " ====== NEO Complete with cache and Autocomplete setting =============
