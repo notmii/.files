@@ -4,6 +4,26 @@ call pathogen#helptags()
 call pathogen#incubate()
 execute pathogen#infect()
 
+set omnifunc=syntaxcomplete#Complete
+
+let g:phpcomplete_relax_static_constraint = 1
+let g:phpcomplete_parse_docblock_comments = 1
+let g:phpcomplete_cache_taglists = 1
+
+let g:acp_enableAtStartup = 1
+let g:acp_completeOption = '.,t,i'
+let g:acp_completeoptPreview = 1
+let g:acp_behaviorKeywordCommand = "\<C-n>"
+
+inoremap <expr> <TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
+inoremap <expr> <Space> pumvisible() ? neocomplcache#close_popup() . "\<Space>" : "\<Space>"
+
+let g:necomplcache_enable_at_startup = 1
+let g:necomplcache_enable_smart_case = 1
+let g:necomplcache_min_syntax_length = 2
+let g:neocomplcache_enable_auto_select = 1
+
 " ======= GUI Vim ===================
 set guioptions-=m           " Remove menu bar
 set guioptions-=T           " Remove toolbar
@@ -19,6 +39,8 @@ set term=xterm-256color     " [ builtin_xterm | xterm-256color ]
 colorscheme desert
 syntax enable
 filetype plugin indent on
+hi Pmenu        ctermbg=black       ctermfg=white
+hi PmenuSel     ctermbg=grey      ctermfg=black
 
 " ======= Personal Settings ========
 set number          " Show line number
@@ -80,38 +102,52 @@ set grepformat=%f:%l:%m
 map <silent> <C-f> :call g:WordFind()<CR>
 
 function! g:WordFind()
-    let l:pattern = input("Find:")
+    let l:pattern = input("FindWord:")
 
     if l:pattern == ''
         return
     endif
 
-    let l:grepCommand = 'grep -rns -C 1 --exclude=tags --exclude-dir=public/build "' . l:pattern . '" .'
-    let l:commandOutput = system(l:grepCommand)
-
-    " Output to file
-    call delete('./temp')
-    exe 'redir! > ./temp'
-    silent echon l:commandOutput
-    redir END
+    let l:grepCommand = 'grep -rns -C 1 --exclude=tags --exclude-dir=public/build "' . l:pattern . '" . > /tmp/grep-temp'
+    call system(l:grepCommand)
 
     let @/ = l:pattern
 
     let oldefm = &efm
     set efm=%f:%\\s%#%l:%m
-    execute 'silent! cgetfile ./temp'
+    execute 'silent! cgetfile /tmp/grep-temp'
     :copen
     let &efm = oldefm
-    call delete('./temp')
+    call delete('/tmp/grep-temp')
 endfunction
 
 " ====== NEO Complete with cache and Autocomplete setting =============
-let g:neocomplcache_enable_at_startup = 1
-set omnifunc=syntaxcomplete#Complete
-set complete=.,i,t
-set completeopt=longest,menuone
-inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-" inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
+"   " let g:acp_enableAtStartup = 1
+"   let g:neocomplcache_enable_at_startup = 1
+"   let g:neocomplete#enable_smart_case = 1
+"   let g:neocomplcache_min_syntax_length = 1
+"   let g:neocomplcache_enable_auto_select = 1
+"
+"   set omnifunc=syntaxcomplete#Complete
+"   autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+"   autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+"   autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+"   autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+"   autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+"
+"   " Enable heavy omni completion.
+"   if !exists('g:neocomplcache_omni_patterns')
+"     let g:neocomplcache_omni_patterns = {}
+"   endif
+"   let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"   let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"   let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+"
+"   set complete=.,i,t
+"   set completeopt=longest,menuone
+"inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+"inoremap <expr> <Space> pumvisible() ? neocomplcache#close_popup() : "\<Space>"
+"   " inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
 
 " ====== Execute Commands on file Open =======
 if !exists("autocommand_loaded")
