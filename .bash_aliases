@@ -19,7 +19,10 @@ update-production() {
         -and -not \( -path "./scripts/build-assets/*" \
             -o -path "./public/build/*" \) \
         > cscope.files
+
     cscope -b -q -U -i cscope.files
+    ctags -R --fields=+afikKlmnsSzt --extra=+fq --totals
+
     rm cscope.files
 
     git checkout $CURRENT_BRANCH
@@ -35,8 +38,6 @@ sgrep() {
     done
 }
 
-alias arcd="arc diff --preview --allow-untracked production"
 alias lah='la -h' 
 alias las='ls -ah'
 alias cp='rsync --progress -hs'
-alias staging-login="ssh -A staging-johnl@staging3.freelancer.com"
