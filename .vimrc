@@ -55,12 +55,6 @@ nnoremap j gj
 nnoremap k gk
 
 " ======= Corssaire Mode ==========
-set cursorline
-set cursorcolumn
-highlight CursorColumn  ctermbg=236
-highlight CursorLine    cterm=none ctermbg=236
-
-" ======= Corssaire Mode ==========
 set cursorcolumn
 set cursorline
 
