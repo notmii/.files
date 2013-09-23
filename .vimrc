@@ -4,6 +4,32 @@ execute pathogen#infect()
 call pathogen#helptags()
 call pathogen#incubate()
 
+set omnifunc=syntaxcomplete#Complete
+
+let g:phpcomplete_relax_static_constraint = 1
+let g:phpcomplete_parse_docblock_comments = 1
+let g:phpcomplete_cache_taglists = 1
+
+let g:acp_enableAtStartup = 1
+let g:acp_completeOption = '.,t,i'
+let g:acp_completeoptPreview = 1
+let g:acp_behaviorKeywordCommand = "\<C-n>"
+
+inoremap <expr> <TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
+inoremap <expr> <Space> pumvisible() ? neocomplcache#close_popup() . "\<Space>" : "\<Space>"
+
+let g:necomplcache_enable_at_startup = 1
+let g:necomplcache_enable_smart_case = 1
+let g:necomplcache_min_syntax_length = 2
+let g:neocomplcache_enable_auto_select = 1
+
+" ======= GUI Vim ===================
+set guioptions-=m           " Remove menu bar
+set guioptions-=T           " Remove toolbar
+set guioptions-=r           " Remove right-hand scroll bar
+set guifont=Monospace\ 7
+
 " ======= Power Line Settings =======
 " let g:Powerline_symbols = 'fancy'
 set laststatus=2
@@ -14,6 +40,8 @@ colorscheme desert
 syntax enable
 filetype plugin on
 filetype indent on
+hi Pmenu        ctermbg=black       ctermfg=white
+hi PmenuSel     ctermbg=grey      ctermfg=black
 
 " ======= Personal Settings ========
 set number          " Show line number
@@ -43,16 +71,17 @@ set wildmenu
 set title
 set history=1000
 set undolevels=1000
+set dir=~/.vim/sessions//
 
 " ======= Mappings ================
-map <C-j> :tabnext<CR>
-map <C-k> :tabprevious<CR>
-map <C-t> :tabnew<CR>
-map <C-w> :tabclose<CR>
-map <C-a> ggvGG
+map <silent> <C-l> :tabnext<CR>
+map <silent> <C-h> :tabprevious<CR>
+map <silent> <C-t> :tabnew<CR>
+" map <silent> <C-w> :tabclose!<CR>
+map <silent> <C-a> ggvGG
 nnoremap ; :
-nnoremap j gj
-nnoremap k gk
+map j gj
+map k gk
 
 " ======= Corssaire Mode ==========
 set cursorcolumn
@@ -73,16 +102,31 @@ set foldcolumn=5
 " ======= Quick List 'Vim Searching' ========
 set grepprg=grep\ -rns\ --exclude=tags\ --exclude-dir=\"public\/build\"
 set grepformat=%f:%l:%m
-" nnoremap <C-f> :execute 'grep '  input("Find:")  ' .'<cr>
 
 " ====== NEO Complete with cache and Autocomplete setting =============
-let g:neocomplcache_enable_at_startup = 1
-set omnifunc=syntaxcomplete#Complete
-set complete=.,i,t
-set completeopt=longest,menuone
-inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-cs add /home/john/Projects/gaf-cvs/cscope.out
-" inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
+set grepprg=grep\ -rns\ -C\ 1\ --exclude=tags\ --exclude-dir=\"public\/build\"\ $*
+set grepformat=%f:%l:%m
+map <silent> <C-f> :call g:WordFind()<CR>
+
+function! g:WordFind()
+    let l:pattern = input("FindWord:")
+
+    if l:pattern == ''
+        return
+    endif
+
+    let l:grepCommand = 'grep -rns -C 1 --exclude=tags --exclude-dir=public/build "' . l:pattern . '" . > /tmp/grep-temp'
+    call system(l:grepCommand)
+
+    let @/ = l:pattern
+
+    let oldefm = &efm
+    set efm=%f:%\\s%#%l:%m
+    execute 'silent! cgetfile /tmp/grep-temp'
+    :copen
+    let &efm = oldefm
+    call delete('/tmp/grep-temp')
+endfunction
 
 " ====== Execute Commands on file Open =======
 if !exists("autocommand_loaded")
