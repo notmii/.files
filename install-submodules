@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VIM_BUNDLE_DIR = vim/bundle
+VIM_BUNDLE_DIR="vim/bundle"
 
 # git submodule add https://github.com/vim-scripts/AutoComplPop.git vim/bundle/plugin-autocomplpop
 git clone https://github.com/robbyrussell/oh-my-zsh.git             oh-my-zsh
