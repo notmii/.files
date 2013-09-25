@@ -5,7 +5,8 @@ call pathogen#incubate()
 execute pathogen#infect()
 
 set omnifunc=syntaxcomplete#Complete
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+autocmd FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
 
 let g:phpcomplete_relax_static_constraint = 1
 let g:phpcomplete_parse_docblock_comments = 1
