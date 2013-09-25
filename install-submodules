@@ -1,9 +1,24 @@
+#!/bin/bash
+#
+
+VIM_BUNDLE_DIR = vim/bundle
+
 # git submodule add https://github.com/vim-scripts/AutoComplPop.git vim/bundle/plugin-autocomplpop
-git submodule add https://github.com/robbyrussell/oh-my-zsh.git oh-my-zsh
-git submodule add https://github.com/kien/ctrlp.vim.git vim/bundle/plugin-ctrlp
-git submodule add https://github.com/Raimondi/delimitMate.git vim/bundle/plugin-delimitmate
-git submodule add https://github.com/Shougo/neocomplcache.vim.git vim/bundle/plugin-neocomplcache
-git submodule add https://github.com/scrooloose/nerdtree.git vim/bundle/plugin-nerdtree
-git submodule add https://github.com/shawncplus/phpcomplete.vim.git vim/bundle/plugin-phpcomplete
-git submodule add https://github.com/bling/vim-airline.git  vim/bundle/plugin-airline
-git submodule add https://github.com/scrooloose/syntastic.git vim/bundle/plugin-syntastic
+git clone https://github.com/robbyrussell/oh-my-zsh.git             oh-my-zsh
+git clone https://github.com/kien/ctrlp.vim.git                     $VIM_BUNDLE_DIR/plugin-ctrlp
+git clone https://github.com/Raimondi/delimitMate.git               $VIM_BUNDLE_DIR/plugin-delimitmate
+git clone https://github.com/Shougo/neocomplcache.vim.git           $VIM_BUNDLE_DIR/plugin-neocomplcache
+git clone https://github.com/scrooloose/nerdtree.git                $VIM_BUNDLE_DIR/plugin-nerdtree
+git clone https://github.com/bling/vim-airline.git                  $VIM_BUNDLE_DIR/plugin-airline
+git clone https://github.com/scrooloose/syntastic.git               $VIM_BUNDLE_DIR/plugin-syntastic
+
+# PHP COMPLETE EXTENDED
+git clone https://github.com/shawncplus/phpcomplete.vim.git         $VIM_BUNDLE_DIR/plugin-phpcomplete
+git clone https://github.com/m2mdas/phpcomplete-extended.git        $VIM_BUNDLE_DIR/plugin-phpcomplete-extended
+git clone https://github.com/Shougo/unite.vim.git                   $VIM_BUNDLE_DIR/plugin-unite
+
+git clone https://github.com/Shougo/vimproc.vim.git                 $VIM_BUNDLE_DIR/plugin-vimproc
+cd $VIM_BUNDLE_DIR/plugin-vimproc
+make
+cd ../../..
+
