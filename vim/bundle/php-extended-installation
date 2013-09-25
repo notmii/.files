@@ -1,0 +1,6 @@
+git clone https://github.com/Shougo/vimproc.vim.git
+cd vimproc.vim
+make
+cd ..
+git clone https://github.com/Shougo/unite.vim.git
+git clone https://github.com/m2mdas/phpcomplete-extended.git
