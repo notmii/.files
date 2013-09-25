@@ -17,7 +17,7 @@ git clone https://github.com/kien/ctrlp.vim.git                     $VIM_BUNDLE_
 git clone https://github.com/Raimondi/delimitMate.git               $VIM_BUNDLE_DIR/plugin-delimitmate
 git clone https://github.com/Shougo/neocomplcache.vim.git           $VIM_BUNDLE_DIR/plugin-neocomplcache
 git clone https://github.com/scrooloose/nerdtree.git                $VIM_BUNDLE_DIR/plugin-nerdtree
-git clone https://github.com/bling/vim-airline.git                  $VIM_BUNDLE_DIR/plugin-airline
+git clone https://github.com/Lokaltog/vim-powerline.git             $VIM_BUNDLE_DIR/plugin-powerline
 git clone https://github.com/scrooloose/syntastic.git               $VIM_BUNDLE_DIR/plugin-syntastic
 
 # PHP COMPLETE EXTENDED
