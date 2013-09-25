@@ -11,10 +11,10 @@ echo $BASE_DIR
 
 VIM_BUNDLE_DIR="$BASE_DIR/vim/bundle"
 
-# git submodule add https://github.com/vim-scripts/AutoComplPop.git vim/bundle/plugin-autocomplpop
 git clone https://github.com/robbyrussell/oh-my-zsh.git             $BASE_DIR/oh-my-zsh
 git clone https://github.com/kien/ctrlp.vim.git                     $VIM_BUNDLE_DIR/plugin-ctrlp
 git clone https://github.com/Raimondi/delimitMate.git               $VIM_BUNDLE_DIR/plugin-delimitmate
+git clone https://github.com/vim-scripts/AutoComplPop.git           $VIM_BUNDLE_DIR/plugin-autocomplpop
 git clone https://github.com/Shougo/neocomplcache.vim.git           $VIM_BUNDLE_DIR/plugin-neocomplcache
 git clone https://github.com/scrooloose/nerdtree.git                $VIM_BUNDLE_DIR/plugin-nerdtree
 git clone https://github.com/Lokaltog/vim-powerline.git             $VIM_BUNDLE_DIR/plugin-powerline

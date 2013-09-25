@@ -5,8 +5,10 @@ call pathogen#incubate()
 execute pathogen#infect()
 
 set omnifunc=syntaxcomplete#Complete
-autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
-autocmd FileType php setlocal omnifunc=phpcomplete_extended#CompletePHP
+set completeopt=preview,longest,menuone
+filetype plugin indent on
+autocmd filetype php set omnifunc=phpcomplete#CompletePHP
+autocmd filetype php set omnifunc=phpcomplete_extended#CompletePHP
 
 let g:phpcomplete_relax_static_constraint = 1
 let g:phpcomplete_parse_docblock_comments = 1
@@ -17,22 +19,21 @@ let php_htmlInStrings=1
 let g:acp_enableAtStartup = 1
 let g:acp_completeOption = '.,t,i'
 let g:acp_completeoptPreview = 1
-let g:acp_behaviorKeywordCommand = "\<C-n>"
+let g:acp_behaviorKeywordCommand = "\<C-x>\<C-]>"
 
 inoremap <expr> <TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
 
 let g:necomplcache_enable_at_startup = 1
 let g:necomplcache_enable_smart_case = 1
-let g:necomplcache_min_syntax_length = 2
-let g:neocomplcache_enable_auto_select = 0
+let g:necomplcache_min_syntax_length = 1
+let g:neocomplcache_enable_auto_select = 1
 
 let g:ctrlp_regexp = 1
-let g:ctrlp_match_window_bottom = 0
+let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_max_files = 0
 let g:ctrlp_open_new_file = 't'
 let g:ctrlp_open_multiple_files = 'tjr'
-
 
 " ======= GUI Vim ===================
 set guioptions-=m           " Remove menu bar
@@ -48,7 +49,6 @@ set term=xterm-256color     " [ builtin_xterm | xterm-256color ]
 " ======= Theme Settings ============
 colorscheme desert
 syntax enable
-filetype plugin indent on
 hi Pmenu        ctermbg=black       ctermfg=white
 hi PmenuSel     ctermbg=grey        ctermfg=black
 hi Search       cterm=bold          ctermfg=black ctermbg=yellow
