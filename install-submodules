@@ -1,5 +1,4 @@
 #!/bin/bash
-#
 
 VIM_BUNDLE_DIR = vim/bundle
 
