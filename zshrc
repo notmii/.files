@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh configuration.
-ZSH=$HOME/configurations/.oh-my-zsh
+ZSH=$HOME/configurations/oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -27,15 +27,15 @@ export UPDATE_ZSH_DAYS=1
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment following line if you want to disable command autocorrection
-# DISABLE_CORRECTION="true"
+DISABLE_CORRECTION="true"
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment following line if you want to disable marking untracked files under
 # VCS as dirty. This makes repository status check for large repositories much,
 # much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -43,14 +43,30 @@ export UPDATE_ZSH_DAYS=1
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
+
+# Lines configured by zsh-newuser-install
+HISTFILE="$HOME/.histfile"
+HISTSIZE=100000
+SAVEHIST=100000
+setopt appendhistory beep nomatch notify
+unsetopt autocd extendedglob
+bindkey -e
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename "$HOME.zshrc"
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
 alias="bash_aliases"
 customs="bash_customs"
 
 # Customize to your needs...
 if [[ -e $alias ]]; then
-	source $alias
+    source $alias
 fi
 
 if [[ -e $customs ]]; then
-	source $customs
+    source $customs
 fi
