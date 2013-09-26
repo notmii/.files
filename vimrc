@@ -19,7 +19,7 @@ let php_htmlInStrings=1
 let g:acp_enableAtStartup = 1
 let g:acp_completeOption = '.,t,i'
 let g:acp_completeoptPreview = 1
-let g:acp_behaviorKeywordCommand = "\<C-x>\<C-]>"
+let g:acp_behaviorKeywordCommand = "\<C-n>"
 
 inoremap <expr> <TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
