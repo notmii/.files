@@ -30,5 +30,5 @@ git clone https://github.com/Shougo/unite.vim.git                   $VIM_BUNDLE_
 git clone https://github.com/Shougo/vimproc.vim.git                 $VIM_BUNDLE_DIR/plugin-vimproc
 cd $VIM_BUNDLE_DIR/plugin-vimproc
 make
-cd ../../..
+cd $BASE_DIR
 
