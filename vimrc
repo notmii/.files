@@ -1,8 +1,8 @@
 set nocompatible
 
+execute pathogen#infect()
 call pathogen#helptags()
 call pathogen#incubate()
-execute pathogen#infect()
 
 set omnifunc=syntaxcomplete#Complete
 set completeopt=preview,longest,menuone
@@ -56,7 +56,6 @@ hi Search       cterm=bold          ctermfg=black ctermbg=yellow
 " ======= Personal Settings ========
 set number          " Show line number
 set mouse=n         " Enable mouse interaction
-
 set hlsearch        " Highlight search
 set incsearch       " Search as you type
 
@@ -70,7 +69,9 @@ set autoindent
 set showcmd                 " Show the command being type
 set clipboard=unnamedplus   " Set the clipboard as the default storage of copy
 set nowrap                  " Set to no wrapping
+set linebreak               " Wrap lines on convenient points
 set backspace=indent,eol,start
+
 set list
 set listchars=tab:>>,trail:$,extends:#,nbsp:$
 set pastetoggle=<F2>
@@ -90,11 +91,12 @@ nnoremap ; :
 map j gj
 map k gk
 
-" ======= Crossaire Mode ==========
-set cursorline
+" ======= Corssaire Mode ==========
 set cursorcolumn
-highlight CursorColumn  ctermbg=236
-highlight CursorLine    cterm=none ctermbg=236
+set cursorline
+
+highlight CursorLine        ctermbg=236 cterm=none
+highlight CursorColumn      ctermbg=236
 
 " ======= PHP Linting ========
 set makeprg=php\ -l\ %
@@ -106,6 +108,10 @@ set foldmethod=marker
 set foldcolumn=5
 
 " ======= Quick List 'Vim Searching' ========
+set grepprg=grep\ -rns\ --exclude=tags\ --exclude-dir=\"public\/build\"
+set grepformat=%f:%l:%m
+
+" ====== NEO Complete with cache and Autocomplete setting =============
 set grepprg=grep\ -rns\ -C\ 1\ --exclude=tags\ --exclude-dir=\"public\/build\"\ $*
 set grepformat=%f:%l:%m
 map <silent> <C-f> :call g:WordFind()<CR>
@@ -134,3 +140,15 @@ endfunction
 if !exists("autocommand_loaded")
     let autocommand_loaded = 1
 endif
+
+" ====== CtrlP ===============================
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmp = '<CtrlPMixed>'
+let g:ctrlp_user_command = 'find %s -type f'
+
+" ====== Taglist (Tlist) =====================
+let Tlist_Use_Right_Window = 1
+let Tlist_Show_One_File = 1
+let tlist_php_settings='php;c:class;f:function'
+
+source ~/.vimrc-xdebug
