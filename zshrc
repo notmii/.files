@@ -1,5 +1,7 @@
+BASE_DIR=$(dirname $(readlink -f $0))
+
 # Path to your oh-my-zsh configuration.
-ZSH=$HOME/configurations/oh-my-zsh
+ZSH=$BASE_DIR/oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -10,7 +12,6 @@ ZSH_THEME="candy"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
 
 # CASE_SENSITIVE="true"
 
@@ -45,7 +46,7 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # Lines configured by zsh-newuser-install
-HISTFILE="$HOME/.histfile"
+HISTFILE=$HOME/.histfile
 HISTSIZE=100000
 SAVEHIST=100000
 setopt appendhistory beep nomatch notify
@@ -59,8 +60,8 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-alias="bash_aliases"
-customs="bash_customs"
+alias=$BASE_DIR/bash_aliases
+customs=$BASE_DIR/bash_customs
 
 # Customize to your needs...
 if [[ -e $alias ]]; then
