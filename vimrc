@@ -5,24 +5,35 @@ call pathogen#helptags()
 call pathogen#incubate()
 
 set omnifunc=syntaxcomplete#Complete
+set completeopt=preview,longest,menuone
+filetype plugin indent on
+autocmd filetype php set omnifunc=phpcomplete#CompletePHP
+autocmd filetype php set omnifunc=phpcomplete_extended#CompletePHP
 
 let g:phpcomplete_relax_static_constraint = 1
 let g:phpcomplete_parse_docblock_comments = 1
 let g:phpcomplete_cache_taglists = 1
+let php_sql_query=1
+let php_htmlInStrings=1
 
 let g:acp_enableAtStartup = 1
 let g:acp_completeOption = '.,t,i'
 let g:acp_completeoptPreview = 1
-let g:acp_behaviorKeywordCommand = "\<C-n>"
+let g:acp_behaviorKeywordCommand = "\<C-x>\<C-]>"
 
 inoremap <expr> <TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
-inoremap <expr> <Space> pumvisible() ? neocomplcache#close_popup() . "\<Space>" : "\<Space>"
 
 let g:necomplcache_enable_at_startup = 1
 let g:necomplcache_enable_smart_case = 1
-let g:necomplcache_min_syntax_length = 2
+let g:necomplcache_min_syntax_length = 1
 let g:neocomplcache_enable_auto_select = 1
+
+let g:ctrlp_regexp = 1
+let g:ctrlp_match_window_bottom = 1
+let g:ctrlp_max_files = 0
+let g:ctrlp_open_new_file = 't'
+let g:ctrlp_open_multiple_files = 'tjr'
 
 " ======= GUI Vim ===================
 set guioptions-=m           " Remove menu bar
@@ -35,20 +46,18 @@ set guifont=Monospace\ 7
 set laststatus=2
 set term=xterm-256color     " [ builtin_xterm | xterm-256color ]
 
-" ====== Theme Settings ============
+" ======= Theme Settings ============
 colorscheme desert
 syntax enable
-filetype plugin on
-filetype indent on
 hi Pmenu        ctermbg=black       ctermfg=white
-hi PmenuSel     ctermbg=grey      ctermfg=black
+hi PmenuSel     ctermbg=grey        ctermfg=black
+hi Search       cterm=bold          ctermfg=black ctermbg=yellow
 
 " ======= Personal Settings ========
 set number          " Show line number
 set mouse=n         " Enable mouse interaction
 set hlsearch        " Highlight search
 set incsearch       " Search as you type
-hi Search cterm=bold ctermfg=black ctermbg=yellow
 
 set expandtab       " Use space instead of tab
 set tabstop=4       " Size of tab
@@ -77,7 +86,6 @@ set dir=~/.vim/sessions//
 map <silent> <C-l> :tabnext<CR>
 map <silent> <C-h> :tabprevious<CR>
 map <silent> <C-t> :tabnew<CR>
-" map <silent> <C-w> :tabclose!<CR>
 map <silent> <C-a> ggvGG
 nnoremap ; :
 map j gj
@@ -115,10 +123,8 @@ function! g:WordFind()
         return
     endif
 
-    let l:grepCommand = 'grep -rns -C 1 --exclude=tags --exclude-dir=public/build "' . l:pattern . '" . > /tmp/grep-temp'
+    let l:grepCommand = 'egrep -rns -C 2 --exclude=tags --exclude-dir=public/build "' . l:pattern . '" . > /tmp/grep-temp'
     call system(l:grepCommand)
-
-    let @/ = l:pattern
 
     let oldefm = &efm
     set efm=%f:%\\s%#%l:%m
@@ -126,6 +132,8 @@ function! g:WordFind()
     :copen
     let &efm = oldefm
     call delete('/tmp/grep-temp')
+
+    let @/ = l:pattern
 endfunction
 
 " ====== Execute Commands on file Open =======
