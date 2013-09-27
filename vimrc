@@ -133,7 +133,15 @@ function! g:WordFind()
     let &efm = oldefm
     call delete('/tmp/grep-temp')
 
-    let @/ = l:pattern
+    let @/ = l:pattern<CR>
+endfunction
+
+nnoremap <C-]> :call g:GoToDefintion()<CR>
+function! g:GoToDefintion()
+    let l:word = expand("<cword>")
+    tabnew
+    execute '\<C-]>\<CR>'
+    let @/ = l:word
 endfunction
 
 " ====== Execute Commands on file Open =======
