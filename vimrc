@@ -131,8 +131,8 @@ set grepformat=%f:%l:%m
 " ====== NEO Complete with cache and Autocomplete setting =============
 set grepprg=grep\ -rns\ -C\ 1\ --exclude=tags\ --exclude-dir=\"public\/build\"\ $*
 set grepformat=%f:%l:%m
-map <silent> <C-f> :call g:WordFind()<CR>
 
+map <silent> <C-f> :call g:WordFind()<CR>
 function! g:WordFind()
     let l:pattern = input("FindWord:")
 
@@ -150,7 +150,14 @@ function! g:WordFind()
     :copen
     let &efm = oldefm
     call delete('/tmp/grep-temp')
+endfunction
 
+nnoremap <C-]> :call g:GoToDefintion()<CR>
+function! g:GoToDefintion()
+    tabnew
+    let l:word = expand("<cword>")
+    execute '\<C-]>\<CR>'
+    let @/ = l:word
 endfunction
 
 " ====== Execute Commands on file Open =======
