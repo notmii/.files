@@ -29,11 +29,21 @@ let g:necomplcache_enable_smart_case = 1
 let g:necomplcache_min_syntax_length = 1
 let g:neocomplcache_enable_auto_select = 1
 
+autocmd vimenter * NERDTree
+
+" ====== CtrlP ===============================
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmp = '<CtrlPMixed>'
+let g:ctrlp_user_command = 'find %s -type f'
 let g:ctrlp_regexp = 1
 let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_max_files = 0
 let g:ctrlp_open_new_file = 't'
 let g:ctrlp_open_multiple_files = 'tjr'
+
+if filereadable('cscope.out')
+    cs add cscope.out
+endif
 
 " ======= GUI Vim ===================
 set guioptions-=m           " Remove menu bar
@@ -91,6 +101,13 @@ nnoremap ; :
 map j gj
 map k gk
 
+nnoremap j :m .+1<CR>==
+nnoremap k :m .-2<CR>==
+inoremap j <Esc>:m .+1<CR>==gi
+inoremap k <Esc>:m .-2<CR>==gi
+vnoremap k :m '<-2<CR>gv=gv
+vnoremap j :m '>+1<CR>gv=gv
+
 " ======= Corssaire Mode ==========
 set cursorcolumn
 set cursorline
@@ -123,6 +140,7 @@ function! g:WordFind()
         return
     endif
 
+    let @/ = l:pattern
     let l:grepCommand = 'egrep -rns -C 2 --exclude=tags --exclude-dir=public/build "' . l:pattern . '" . > /tmp/grep-temp'
     call system(l:grepCommand)
 
@@ -133,18 +151,12 @@ function! g:WordFind()
     let &efm = oldefm
     call delete('/tmp/grep-temp')
 
-    let @/ = l:pattern
 endfunction
 
 " ====== Execute Commands on file Open =======
 if !exists("autocommand_loaded")
     let autocommand_loaded = 1
 endif
-
-" ====== CtrlP ===============================
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmp = '<CtrlPMixed>'
-let g:ctrlp_user_command = 'find %s -type f'
 
 " ====== Taglist (Tlist) =====================
 let Tlist_Use_Right_Window = 1
