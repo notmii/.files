@@ -1,14 +1,17 @@
 set nocompatible
 
-execute pathogen#infect()
+call pathogen#infect()
 call pathogen#helptags()
 call pathogen#incubate()
 
 set omnifunc=syntaxcomplete#Complete
 set completeopt=preview,longest,menuone
+
 filetype plugin indent on
-autocmd filetype php set omnifunc=phpcomplete#CompletePHP
-autocmd filetype php set omnifunc=phpcomplete_extended#CompletePHP
+au BufNewFile,BufRead *.tpl        set filetype=html
+au BufNewFile,BufRead *.smarty     set filetype=html
+au filetype php set omnifunc=phpcomplete#CompletePHP
+" autocmd filetype php set omnifunc=phpcomplete_extended#CompletePHP
 
 let g:phpcomplete_relax_static_constraint = 1
 let g:phpcomplete_parse_docblock_comments = 1
@@ -29,7 +32,11 @@ let g:necomplcache_enable_smart_case = 1
 let g:necomplcache_min_syntax_length = 1
 let g:neocomplcache_enable_auto_select = 1
 
-autocmd vimenter * NERDTree
+" ====== NERTree =============================
+au VimEnter * NERDTree
+au VimEnter * wincmd p
+au BufWinEnter * NERDTreeMirror
+au BufWinEnter * wincmd p
 
 " ====== CtrlP ===============================
 let g:ctrlp_map = '<c-p>'
@@ -57,29 +64,29 @@ set laststatus=2
 set term=xterm-256color     " [ builtin_xterm | xterm-256color ]
 
 " ======= Theme Settings ============
-colorscheme desert
+colorscheme molokai
 syntax enable
 hi Pmenu        ctermbg=black       ctermfg=white
 hi PmenuSel     ctermbg=grey        ctermfg=black
-hi Search       cterm=bold          ctermfg=black ctermbg=yellow
+hi Search       ctermfg=black       ctermbg=yellow
 
 " ======= Personal Settings ========
 set number          " Show line number
-set mouse=n         " Enable mouse interaction
+set mouse=c         " Enable mouse interaction
 set hlsearch        " Highlight search
 set incsearch       " Search as you type
 
+set smarttab
 set expandtab       " Use space instead of tab
 set tabstop=4       " Size of tab
-set smarttab
 set softtabstop=4
 set shiftwidth=4
 set autoindent
 
 set showcmd                 " Show the command being type
-set clipboard=unnamedplus   " Set the clipboard as the default storage of copy
 set nowrap                  " Set to no wrapping
 set linebreak               " Wrap lines on convenient points
+set clipboard=unnamedplus   " Set the clipboard as the default storage of copy
 set backspace=indent,eol,start
 
 set list
@@ -93,20 +100,21 @@ set undolevels=1000
 set dir=~/.vim/sessions//
 
 " ======= Mappings ================
-map <silent> <C-l> :tabnext<CR>
-map <silent> <C-h> :tabprevious<CR>
-map <silent> <C-t> :tabnew<CR>
-map <silent> <C-a> ggvGG
+nnoremap <silent> <C-t> :tabnew<CR>
+nnoremap <silent> <C-e> :tabclose<CR>
+nnoremap <silent> <C-h> :tabprevious<CR>
+nnoremap <silent> <C-l> :tabnext<CR>
+nnoremap <silent> <C-a> ggvGG
 nnoremap ; :
-map j gj
-map k gk
+nnoremap j gj
+nnoremap k gk
 
-nnoremap j :m .+1<CR>==
-nnoremap k :m .-2<CR>==
-inoremap j <Esc>:m .+1<CR>==gi
-inoremap k <Esc>:m .-2<CR>==gi
-vnoremap k :m '<-2<CR>gv=gv
-vnoremap j :m '>+1<CR>gv=gv
+nnoremap <silent> J :m .+1<CR>
+nnoremap <silent> K :m .-2<CR>
+inoremap <silent> J <Esc>:m .+1<CR>==gi
+inoremap <silent> K <Esc>:m .-2<CR>==gi
+vnoremap <silent> K :m '<-2<CR>gv=gv
+vnoremap <silent> J :m '>+1<CR>gv=gv
 
 " ======= Corssaire Mode ==========
 set cursorcolumn
@@ -129,7 +137,7 @@ set grepprg=grep\ -rns\ --exclude=tags\ --exclude-dir=\"public\/build\"
 set grepformat=%f:%l:%m
 
 " ====== NEO Complete with cache and Autocomplete setting =============
-set grepprg=grep\ -rns\ -C\ 1\ --exclude=tags\ --exclude-dir=\"public\/build\"\ $*
+set grepprg=grep\ -rns\ -C\ 1\ --exclude=\"tags\"\ --exclude=\"cscope.*\"\ --exclude-dir=\"public\/build\"\ $*
 set grepformat=%f:%l:%m
 
 map <silent> <C-f> :call g:WordFind()<CR>
@@ -141,7 +149,7 @@ function! g:WordFind()
     endif
 
     let @/ = l:pattern
-    let l:grepCommand = 'egrep -rns -C 2 --exclude=tags --exclude-dir=public/build "' . l:pattern . '" . > /tmp/grep-temp'
+    let l:grepCommand = 'egrep -rns -C 2 --exclude=tags --exclude="cscope.*" --exclude-dir=public/build "' . l:pattern . '" . > /tmp/grep-temp'
     call system(l:grepCommand)
 
     let oldefm = &efm
@@ -152,13 +160,13 @@ function! g:WordFind()
     call delete('/tmp/grep-temp')
 endfunction
 
-nnoremap <C-]> :call g:GoToDefintion()<CR>
-function! g:GoToDefintion()
-    tabnew
-    let l:word = expand("<cword>")
-    execute '\<C-]>\<CR>'
-    let @/ = l:word
-endfunction
+"   nnoremap <C-]> :call g:GoToDefintion()<CR>
+"   function! g:GoToDefintion()
+"       tabnew
+"       let l:word = expand("<cword>")
+"       execute 'tjump '.l:word
+"       let @/ = l:word
+"   endfunction
 
 " ====== Execute Commands on file Open =======
 if !exists("autocommand_loaded")
