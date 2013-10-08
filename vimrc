@@ -7,6 +7,7 @@ call pathogen#incubate()
 set omnifunc=syntaxcomplete#Complete
 set completeopt=preview,longest,menuone
 
+
 filetype plugin indent on
 au BufNewFile,BufRead *.tpl        set filetype=html
 au BufNewFile,BufRead *.smarty     set filetype=html
@@ -100,13 +101,15 @@ set history=1000
 set undolevels=1000
 set dir=~/.vim/sessions//       " Sets where vim-session files will be stored
 set lazyredraw                  " Buffers the vim motions
+set switchbuf+=usetab,newtab    " Open files in quick list in new tab or re-use tab
 
 " ======= Mappings ================
 nnoremap <silent> <C-t> :tabnew<CR>
 nnoremap <silent> <C-e> :tabclose<CR>
 nnoremap <silent> <C-h> :tabprevious<CR>
 nnoremap <silent> <C-l> :tabnext<CR>
-nnoremap <silent> <C-a> ggvGG
+nnoremap <silent> <C-j> <C-d>
+nnoremap <silent> <C-k> <C-u>
 nnoremap ; :
 nnoremap j gj
 nnoremap k gk
@@ -115,8 +118,8 @@ nnoremap <silent> J :m .+1<CR>
 nnoremap <silent> K :m .-2<CR>
 inoremap <silent> J <Esc>:m .+1<CR>==gi
 inoremap <silent> K <Esc>:m .-2<CR>==gi
-vnoremap <silent> K :m '<-2<CR>gv=gv
 vnoremap <silent> J :m '>+1<CR>gv=gv
+vnoremap <silent> K :m '<-2<CR>gv=gv
 
 " ======= Corssaire Mode ==========
 set cursorcolumn
