@@ -90,15 +90,16 @@ set linebreak               " Wrap lines on convenient points
 set clipboard=unnamedplus   " Set the clipboard as the default storage of copy
 set backspace=indent,eol,start
 
-set list
+set list                    " Show none-character
 set listchars=tab:>>,trail:$,extends:#,nbsp:$
 set pastetoggle=<F2>
 
-set wildmenu
+set wildmenu                    " Show hint on command when tab is pressed
 set title
 set history=1000
 set undolevels=1000
-set dir=~/.vim/sessions//
+set dir=~/.vim/sessions//       " Sets where vim-session files will be stored
+set lazyredraw                  " Buffers the vim motions
 
 " ======= Mappings ================
 nnoremap <silent> <C-t> :tabnew<CR>
@@ -132,14 +133,6 @@ set errorformat=%m\ in\ %f\ on\ line\ %l
 set foldmarker={,}
 set foldmethod=marker
 set foldcolumn=5
-
-" ======= Quick List 'Vim Searching' ========
-set grepprg=grep\ -rns\ --exclude=tags\ --exclude-dir=\"public\/build\"
-set grepformat=%f:%l:%m
-
-" ====== NEO Complete with cache and Autocomplete setting =============
-set grepprg=grep\ -rns\ -C\ 1\ --exclude=\"tags\"\ --exclude=\"cscope.*\"\ --exclude-dir=\"public\/build\"\ $*
-set grepformat=%f:%l:%m
 
 map <silent> <C-f> :call g:WordFind()<CR>
 function! g:WordFind()
