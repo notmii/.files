@@ -116,6 +116,8 @@ nnoremap <silent> <C-t> :tabnew<CR>
 nnoremap <silent> <C-e> :tabclose<CR>
 nnoremap <silent> <C-h> :tabprevious<CR>
 nnoremap <silent> <C-l> :tabnext<CR>
+nnoremap <silent> <S-H> :tabm +1<CR>
+nnoremap <silent> <S-L> :tabm -1<CR>
 nnoremap <silent> <C-j> <C-d>
 nnoremap <silent> <C-k> <C-u>
 nnoremap ; :
