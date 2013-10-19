@@ -68,9 +68,16 @@ set term=xterm-256color     " [ builtin_xterm | xterm-256color ]
 " ======= Theme Settings ============
 colorscheme molokai
 syntax enable
+hi normal       ctermbg=none
 hi Pmenu        ctermbg=black       ctermfg=white
 hi PmenuSel     ctermbg=grey        ctermfg=black
 hi Search       ctermfg=black       ctermbg=yellow
+hi CursorLine   ctermbg=236         cterm=none
+hi CursorColumn ctermbg=236
+
+set cursorcolumn
+set cursorline
+
 
 " ======= Personal Settings ========
 set number          " Show line number
@@ -84,6 +91,7 @@ set tabstop=4       " Size of tab
 set softtabstop=4
 set shiftwidth=4
 set autoindent
+set cindent
 
 set showcmd                 " Show the command being type
 set nowrap                  " Set to no wrapping
@@ -120,13 +128,6 @@ inoremap <silent> J <Esc>:m .+1<CR>==gi
 inoremap <silent> K <Esc>:m .-2<CR>==gi
 vnoremap <silent> J :m '>+1<CR>gv=gv
 vnoremap <silent> K :m '<-2<CR>gv=gv
-
-" ======= Corssaire Mode ==========
-set cursorcolumn
-set cursorline
-
-highlight CursorLine        ctermbg=236 cterm=none
-highlight CursorColumn      ctermbg=236
 
 " ======= PHP Linting ========
 set makeprg=php\ -l\ %
