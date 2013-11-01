@@ -58,5 +58,6 @@ php-fpm-restart() {
 
 alias lah='la -h'
 alias las='ls -ah'
-alias cp='rsync --progress -hs'
+alias cp='rsync --progress -hsr'
+alias composer='composer --profile -vv'
 
