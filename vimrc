@@ -75,10 +75,10 @@ hi PmenuSel     ctermbg=grey        ctermfg=black
 hi Search       ctermfg=black       ctermbg=yellow
 hi CursorLine   ctermbg=236         cterm=none
 hi CursorColumn ctermbg=236
+hi Normal       ctermbg=none
 
 set cursorcolumn
 set cursorline
-
 
 " ======= Personal Settings ========
 set number          " Show line number
@@ -117,8 +117,8 @@ nnoremap <silent> <C-t> :tabnew<CR>
 nnoremap <silent> <C-e> :tabclose<CR>
 nnoremap <silent> <C-h> :tabprevious<CR>
 nnoremap <silent> <C-l> :tabnext<CR>
-nnoremap <silent> <S-H> :tabm +1<CR>
-nnoremap <silent> <S-L> :tabm -1<CR>
+nnoremap <silent> <S-h> :tabmove -1<CR>
+nnoremap <silent> <S-l> :tabmove +1<CR>
 nnoremap <silent> <C-j> :call smooth_scroll#down(5, 0, 2)<CR>
 nnoremap <silent> <C-k> :call smooth_scroll#up(5, 0, 2)<CR>
 nnoremap ; :
