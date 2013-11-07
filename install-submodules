@@ -22,6 +22,7 @@ git clone https://github.com/Lokaltog/vim-powerline.git             $VIM_BUNDLE_
 git clone https://github.com/scrooloose/syntastic.git               $VIM_BUNDLE_DIR/plugin-syntastic
 git clone https://github.com/tpope/vim-fugitive.git                 $VIM_BUNDLE_DIR/plugin-fugitive
 git clone https://github.com/joonty/vdebug.git                      $VIM_BUNDLE_DIR/plugin-vdebug
+git clone https://github.com/terryma/vim-smooth-scroll.git          $VIM_BUNDLE_DIR/plugin-smooth-scroll
 
 # PHP COMPLETE EXTENDED
 git clone https://github.com/shawncplus/phpcomplete.vim.git         $VIM_BUNDLE_DIR/plugin-phpcomplete
