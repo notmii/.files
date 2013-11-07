@@ -119,8 +119,8 @@ nnoremap <silent> <C-h> :tabprevious<CR>
 nnoremap <silent> <C-l> :tabnext<CR>
 nnoremap <silent> <S-H> :tabm +1<CR>
 nnoremap <silent> <S-L> :tabm -1<CR>
-nnoremap <silent> <C-j> <C-d>
-nnoremap <silent> <C-k> <C-u>
+nnoremap <silent> <C-j> :call smooth_scroll#down(5, 0, 2)<CR>
+nnoremap <silent> <C-k> :call smooth_scroll#up(5, 0, 2)<CR>
 nnoremap ; :
 nnoremap j gj
 nnoremap k gk
