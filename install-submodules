@@ -9,29 +9,6 @@ done
 BASE_DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 echo $BASE_DIR
 
-VIM_BUNDLE_DIR="$BASE_DIR/vim/bundle"
-
 git clone https://github.com/robbyrussell/oh-my-zsh.git             $BASE_DIR/oh-my-zsh
-git clone https://github.com/kien/ctrlp.vim.git                     $VIM_BUNDLE_DIR/plugin-ctrlp
-git clone https://github.com/Raimondi/delimitMate.git               $VIM_BUNDLE_DIR/plugin-delimitmate
-git clone https://github.com/vim-scripts/AutoComplPop.git           $VIM_BUNDLE_DIR/plugin-autocomplpop
-git clone https://github.com/Shougo/neocomplcache.vim.git           $VIM_BUNDLE_DIR/plugin-neocomplcache
-git clone https://github.com/scrooloose/nerdtree.git                $VIM_BUNDLE_DIR/plugin-nerdtree
-git clone https://github.com/jistr/vim-nerdtree-tabs.git            $VIM_BUNDLE_DIR/plugin-nerdtree-tab
-git clone https://github.com/Lokaltog/vim-powerline.git             $VIM_BUNDLE_DIR/plugin-powerline
-git clone https://github.com/scrooloose/syntastic.git               $VIM_BUNDLE_DIR/plugin-syntastic
-git clone https://github.com/tpope/vim-fugitive.git                 $VIM_BUNDLE_DIR/plugin-fugitive
-git clone https://github.com/joonty/vdebug.git                      $VIM_BUNDLE_DIR/plugin-vdebug
-git clone https://github.com/terryma/vim-smooth-scroll.git          $VIM_BUNDLE_DIR/plugin-smooth-scroll
 
-# PHP COMPLETE EXTENDED
-git clone https://github.com/shawncplus/phpcomplete.vim.git         $VIM_BUNDLE_DIR/plugin-phpcomplete
-git clone https://github.com/m2mdas/phpcomplete-extended.git        $VIM_BUNDLE_DIR/plugin-phpcomplete-extended
-git clone https://github.com/Shougo/unite.vim.git                   $VIM_BUNDLE_DIR/plugin-unite
-
-git clone https://github.com/Shougo/vimproc.vim.git                 $VIM_BUNDLE_DIR/plugin-vimproc
-
-cd $VIM_BUNDLE_DIR/plugin-vimproc
-make
 cd $BASE_DIR
-

@@ -1,37 +1,61 @@
-set nocompatible
+if has("vim_starting")
 
-call pathogen#infect()
-call pathogen#helptags()
-call pathogen#incubate()
+    set nocompatible
+    let g:VIMRC_BASE_URL = resolve(expand('<sfile>:p:h'))
 
-set omnifunc=syntaxcomplete#Complete
-set completeopt=preview,longest,menuone
+    exec 'set runtimepath+=' . g:VIMRC_BASE_URL . '/vim/bundle/neobundle.vim/'
+    exec 'source ' . g:VIMRC_BASE_URL . '/neobundlerc.vim'
+    exec 'source ' . g:VIMRC_BASE_URL . '/util-functions.vim'
 
+    call pathogen#infect()
+    call pathogen#helptags()
+    call pathogen#incubate()
+    set completeopt=preview,longest,menuone
 
-filetype plugin indent on
-au BufNewFile,BufRead *.tpl        set filetype=html
-au BufNewFile,BufRead *.smarty     set filetype=html
-au filetype php set omnifunc=phpcomplete#CompletePHP
-" autocmd filetype php set omnifunc=phpcomplete_extended#CompletePHP
+    filetype plugin indent on
 
-let g:phpcomplete_relax_static_constraint = 1
-let g:phpcomplete_parse_docblock_comments = 1
-let g:phpcomplete_cache_taglists = 1
-let php_sql_query=1
-let php_htmlInStrings=1
+    au BufNewFile,BufRead *.tpl,*.smarty    set filetype=html
+    au filetype css             setlocal omnifunc=csscomplete#CompleteCSS
+    au filetype html,markdown   setlocal omnifunc=htmlcomplete#CompleteTags
+    au filetype javascript,js   setlocal omnifunc=javascriptcomplete#CompleteJS
+    au filetype python          setlocal omnifunc=pythoncomplete#Complete
+    au filetype xml             setlocal omnifunc=xmlcomplete#CompleteTags
+    au filetype php             call w:phpAutocommand()
 
-let g:acp_enableAtStartup = 1
-let g:acp_completeOption = '.,t,i'
-let g:acp_completeoptPreview = 1
-let g:acp_behaviorKeywordCommand = "\<C-n>"
+    " if has('autocmd') && exists('+omnifunc')
+    "     if &omnifunc == ''
+    "         au filetype * setlocal omnifunc=syntaxcomplete#Complete
+    "     endif
+    " endif
 
-inoremap <expr> <TAB>   pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
+endif
 
-let g:necomplcache_enable_at_startup = 1
-let g:necomplcache_enable_smart_case = 1
-let g:necomplcache_min_syntax_length = 1
-let g:neocomplcache_enable_auto_select = 1
+" let g:EclimCompletionMethod = 'omnifunc'
+
+if filereadable('cscope.out')
+    cs add cscope.out
+endif
+
+" ====== NEOComplete =======================
+let g:neocomplete#enable_at_startup                     = 1
+let g:neocomplete#use_vimproc                           = 1
+let g:neocomplete#min_keyword_length                    = 2
+let g:neocomplete#sources#syntax#min_keyword_length     = 2
+let g:neocomplete#enable_prefetch                       = 1
+
+if !exists('g:neocomplete#sources#omni#input_patterns')
+    let g:neocomplete#sources#omni#input_patterns = {}
+endif
+
+if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
+endif
+
+let g:neocomplete#sources#omni#input_patterns.php   = '[^. \t]->\h\w*\|\h\w*::\|new '
+let g:neocomplete#force_omni_input_patterns.php     = '[^. \t]->\h\w*\|\h\w*::\|new '
+
+" ====== NEOSnippet ==========================
+let g:neosnippet#enable_preview             = 1
 
 " ====== NERDTree and NERDTreeTabs ===========
 let g:nerdtree_tabs_no_startup_for_diff     = 1
@@ -50,10 +74,6 @@ let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_max_files = 0
 let g:ctrlp_open_new_file = 't'
 let g:ctrlp_open_multiple_files = 'tjr'
-
-if filereadable('cscope.out')
-    cs add cscope.out
-endif
 
 " ======= GUI Vim ===================
 set guioptions-=m           " Remove menu bar
@@ -108,9 +128,12 @@ set wildmenu                    " Show hint on command when tab is pressed
 set title
 set history=1000
 set undolevels=1000
-set dir=~/.vim/sessions//       " Sets where vim-session files will be stored
+" Sets where vim-session files will be stored
+exec 'set dir='.g:VIMRC_BASE_URL.'/sessions/'
 set lazyredraw                  " Buffers the vim motions
 set switchbuf+=usetab,newtab    " Open files in quick list in new tab or re-use tab
+
+set pumheight=10
 
 " ======= Mappings ================
 nnoremap <silent> <C-t> :tabnew<CR>
@@ -119,8 +142,8 @@ nnoremap <silent> <C-h> :tabprevious<CR>
 nnoremap <silent> <C-l> :tabnext<CR>
 nnoremap <silent> <S-h> :tabmove -1<CR>
 nnoremap <silent> <S-l> :tabmove +1<CR>
-nnoremap <silent> <C-j> :call smooth_scroll#down(5, 0, 2)<CR>
-nnoremap <silent> <C-k> :call smooth_scroll#up(5, 0, 2)<CR>
+   " nnoremap <silent> <C-j> :call smooth_scroll#down(5, 0, 2)<CR>
+   " nnoremap <silent> <C-k> :call smooth_scroll#up(5, 0, 2)<CR>
 nnoremap ; :
 nnoremap j gj
 nnoremap k gk
@@ -129,37 +152,33 @@ nnoremap <silent> J :m .+1<CR>
 nnoremap <silent> K :m .-2<CR>
 inoremap <silent> J <Esc>:m .+1<CR>==gi
 inoremap <silent> K <Esc>:m .-2<CR>==gi
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-h> <Left>
+inoremap <C-l> <Right>
+inoremap <C-Space> <C-x><C-o>
 vnoremap <silent> J :m '>+1<CR>gv=gv
 vnoremap <silent> K :m '<-2<CR>gv=gv
+nnoremap <silent> <C-f> :call w:FindWord()<CR>
 
-" ======= PHP Linting ========
-set makeprg=php\ -l\ %
-set errorformat=%m\ in\ %f\ on\ line\ %l
+inoremap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+    \ neosnippet#mappings#expand_or_jump_impl() :
+    \ pumvisible() ? "\<Down>" : "\<TAB>"
+
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+    \ neosnippet#mappings#expand_or_jump_impl() :
+    \ pumvisible() ? "\<Down>" : "\<TAB>"
+
+inoremap <expr><S-TAB> pumvisible() ? "\<Up>"   : "\<TAB>"
+inoremap <expr><Space> pumvisible() ? neocomplete#smart_close_popup() . " " : "\<Space>"
+nmap <C-]>  :exec 'tjump! ' . expand('<cword>')<CR>
+vmap <C-]>  :exec 'tjump! ' . expand('<cword>')<CR>
 
 " ======= Code Folding =======
 set foldmarker={,}
 set foldmethod=marker
 set foldcolumn=5
 
-map <silent> <C-f> :call g:WordFind()<CR>
-function! g:WordFind()
-    let l:pattern = input("FindWord:")
-
-    if l:pattern == ''
-        return
-    endif
-
-    let @/ = l:pattern
-    let l:grepCommand = 'egrep -rns -C 2 --exclude=tags --exclude="cscope.*" --exclude-dir=public/build "' . l:pattern . '" . > /tmp/grep-temp'
-    call system(l:grepCommand)
-
-    let oldefm = &efm
-    set efm=%f:%\\s%#%l:%m
-    execute 'silent! cgetfile /tmp/grep-temp'
-    :copen
-    let &efm = oldefm
-    call delete('/tmp/grep-temp')
-endfunction
 
 "   nnoremap <C-]> :call g:GoToDefintion()<CR>
 "   function! g:GoToDefintion()
@@ -168,11 +187,6 @@ endfunction
 "       execute 'tjump '.l:word
 "       let @/ = l:word
 "   endfunction
-
-" ====== Execute Commands on file Open =======
-if !exists("autocommand_loaded")
-    let autocommand_loaded = 1
-endif
 
 " ====== Taglist (Tlist) =====================
 let Tlist_Use_Right_Window = 1
