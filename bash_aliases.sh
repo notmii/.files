@@ -10,24 +10,44 @@ update-production() {
     git checkout production
     git pull
 
-    echo "Updating CSCOPE"
-    find -type f  \( \
-        -name '*.js' \
-        -o -name '*.php' \
-        -o -name '*.css' \
-        -o -name '*.htm' \) \
+    # echo "Updating CSCOPE"
+    # find -type f  \( \
+    #     -name '*.js' \
+    #     -o -name '*.php' \
+    #     -o -name '*.css' \
+    #     -o -name '*.htm' \) \
+    #     -and -not \( -path "./scripts/build-assets/*" \
+    #         -o -path "./public/build/*" \) \
+    #     > cscope.files
+
+    # cscope -b -q -U -i cscope.files
+
+    find -type f  \( -name '*.php' \) \
         -and -not \( -path "./scripts/build-assets/*" \
             -o -path "./public/build/*" \) \
-        > cscope.files
+        > php.files
 
-    cscope -b -q -U -i cscope.files
-    ctags -R --fields=+afikKlmnsSzt --extra=+fq --totals
+    ctags -R --fields=+aimS --languages=php -f 'php.tags' -L 'php.files' --totals > /dev/null
 
-    rm cscope.files
+    rm php.files
+
+    find -type f  \( \
+        -name '*.js' \
+        -o -name '*.htm' \
+        -o -name '*.html' \) \
+        -and -not \( -path "./scripts/build-assets/*" \
+            -o -path "./public/build/*" \) \
+        > javascript.files
+
+    # ctags -R --fields=+afikKlmnsSzt --languages=javascript -f 'javascript.tags' -L 'javascript.files' --totals > /dev/null
+    ctags -R --languages=javascript -f 'javascript.tags' -L 'javascript.files' --totals > /dev/null
+
+    rm javascript.files
 
     git checkout $CURRENT_BRANCH
     [[ $HAS_CHANGES > 0 ]] && git stash pop
     clear
+    git log -n 3
     git status
 }
 

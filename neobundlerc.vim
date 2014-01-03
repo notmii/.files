@@ -1,4 +1,4 @@
-exec 'call neobundle#rc("' . g:VIMRC_BASE_URL . '/vim/bundle/")'
+exec 'call neobundle#rc(expand("' . g:VIMRC_BASE_URL . '/vim/bundle/"))'
 
 NeoBundleFetch 'https://github.com/Shougo/neobundle.vim.git'
 NeoBundleFetch 'https://github.com/Shougo/neocomplete.vim.git'

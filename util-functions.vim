@@ -24,7 +24,7 @@ function! w:FindWord()
     endif
 
     let @/ = l:pattern
-    let l:grepCommand = 'egrep -rns -C 2 --exclude=tags --exclude=*.tags --exclude="cscope.*" --exclude-dir=public/build "' . l:pattern . '" . > /tmp/grep-temp'
+    let l:grepCommand = 'noglob egrep -rns -C 2 --exclude=tags --exclude=*.tags --exclude="cscope.*" --exclude-dir=public/build "' . l:pattern . '" . > /tmp/grep-temp'
     call system(l:grepCommand)
 
     let oldefm = &efm

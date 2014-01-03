@@ -60,8 +60,8 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-alias=$BASE_DIR/bash_aliases
-customs=$BASE_DIR/bash_customs
+alias=$BASE_DIR/bash_aliases.sh
+customs=$BASE_DIR/bash_customs.sh
 
 # Customize to your needs...
 if [[ -e $alias ]]; then

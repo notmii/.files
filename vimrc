@@ -22,19 +22,15 @@ if has("vim_starting")
     au filetype xml             setlocal omnifunc=xmlcomplete#CompleteTags
     au filetype php             call w:phpAutocommand()
 
-    " if has('autocmd') && exists('+omnifunc')
-    "     if &omnifunc == ''
-    "         au filetype * setlocal omnifunc=syntaxcomplete#Complete
-    "     endif
-    " endif
-
 endif
 
-" let g:EclimCompletionMethod = 'omnifunc'
+
 
 if filereadable('cscope.out')
     cs add cscope.out
 endif
+
+
 
 " ====== NEOComplete =======================
 let g:neocomplete#enable_at_startup                     = 1
@@ -54,6 +50,8 @@ endif
 let g:neocomplete#sources#omni#input_patterns.php   = '[^. \t]->\h\w*\|\h\w*::\|new '
 let g:neocomplete#force_omni_input_patterns.php     = '[^. \t]->\h\w*\|\h\w*::\|new '
 
+
+
 " ====== NEOSnippet ==========================
 let g:neosnippet#enable_preview             = 1
 
@@ -65,6 +63,8 @@ let g:nerdtree_tabs_autoclose               = 1
 let g:nerdtree_tabs_focus_on_files          = 1
 nnoremap <silent> <F3> :NERDTreeTabsToggle<CR>
 
+
+
 " ====== CtrlP ===============================
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmp = '<CtrlPMixed>'
@@ -75,16 +75,22 @@ let g:ctrlp_max_files = 0
 let g:ctrlp_open_new_file = 't'
 let g:ctrlp_open_multiple_files = 'tjr'
 
+
+
 " ======= GUI Vim ===================
 set guioptions-=m           " Remove menu bar
 set guioptions-=T           " Remove toolbar
 set guioptions-=r           " Remove right-hand scroll bar
 set guifont=Monospace\ 7
 
+
+
 " ======= Power Line Settings =======
 " let g:Powerline_symbols = 'fancy'
 set laststatus=2
 set term=xterm-256color     " [ builtin_xterm | xterm-256color ]
+
+
 
 " ======= Theme Settings ============
 colorscheme molokai
@@ -99,6 +105,8 @@ hi Normal       ctermbg=none
 
 set cursorcolumn
 set cursorline
+
+
 
 " ======= Personal Settings ========
 set number          " Show line number
@@ -128,12 +136,17 @@ set wildmenu                    " Show hint on command when tab is pressed
 set title
 set history=1000
 set undolevels=1000
+
+
+
 " Sets where vim-session files will be stored
-exec 'set dir='.g:VIMRC_BASE_URL.'/sessions/'
+exec 'set dir='.g:VIMRC_BASE_URL.'/vim/sessions/'
 set lazyredraw                  " Buffers the vim motions
 set switchbuf+=usetab,newtab    " Open files in quick list in new tab or re-use tab
 
 set pumheight=10
+
+
 
 " ======= Mappings ================
 nnoremap <silent> <C-t> :tabnew<CR>
@@ -142,8 +155,8 @@ nnoremap <silent> <C-h> :tabprevious<CR>
 nnoremap <silent> <C-l> :tabnext<CR>
 nnoremap <silent> <S-h> :tabmove -1<CR>
 nnoremap <silent> <S-l> :tabmove +1<CR>
-   " nnoremap <silent> <C-j> :call smooth_scroll#down(5, 0, 2)<CR>
-   " nnoremap <silent> <C-k> :call smooth_scroll#up(5, 0, 2)<CR>
+nnoremap <silent> <C-j> :call smooth_scroll#down(5, 0, 2)<CR>
+nnoremap <silent> <C-k> :call smooth_scroll#up(5, 0, 2)<CR>
 nnoremap ; :
 nnoremap j gj
 nnoremap k gk
