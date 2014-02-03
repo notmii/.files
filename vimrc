@@ -22,12 +22,10 @@ if has("vim_starting")
     au filetype xml             setlocal omnifunc=xmlcomplete#CompleteTags
     au filetype php             call w:phpAutocommand()
 
-endif
+    if filereadable('cscope.out')
+        cs add cscope.out
+    endif
 
-
-
-if filereadable('cscope.out')
-    cs add cscope.out
 endif
 
 
@@ -81,7 +79,7 @@ let g:ctrlp_open_multiple_files = 'tjr'
 set guioptions-=m           " Remove menu bar
 set guioptions-=T           " Remove toolbar
 set guioptions-=r           " Remove right-hand scroll bar
-set guifont=Monospace\ 7
+set guifont=Monaco\ 7
 
 
 
@@ -95,13 +93,18 @@ set term=xterm-256color     " [ builtin_xterm | xterm-256color ]
 " ======= Theme Settings ============
 colorscheme molokai
 syntax enable
-hi normal       ctermbg=none
+hi normal       ctermbg=232
 hi Pmenu        ctermbg=black       ctermfg=white
 hi PmenuSel     ctermbg=grey        ctermfg=black
 hi Search       ctermfg=black       ctermbg=yellow
-hi CursorLine   ctermbg=236         cterm=none
+hi CursorLine   ctermbg=none        cterm=underline
 hi CursorColumn ctermbg=236
-hi Normal       ctermbg=none
+
+" Fix vim's background when running on tmux website: http://sunaku.github.io/vim-256color-bce.html
+if &term =~ '256color'
+    set t_ut=
+    set t_Co=256
+endif
 
 set cursorcolumn
 set cursorline
@@ -113,6 +116,10 @@ set number          " Show line number
 set mouse=c         " Enable mouse interaction
 set hlsearch        " Highlight search
 set incsearch       " Search as you type
+set ignorecase      " Ignore case in searching
+set smartcase
+set splitright      " Open split window on the right of current pane
+set splitbelow      " Open split window on the bottom of current pane
 
 set smarttab
 set expandtab       " Use space instead of tab
@@ -125,8 +132,13 @@ set cindent
 set showcmd                 " Show the command being type
 set nowrap                  " Set to no wrapping
 set linebreak               " Wrap lines on convenient points
-set clipboard=unnamedplus   " Set the clipboard as the default storage of copy
 set backspace=indent,eol,start
+
+if has('unnamedplus')
+    set clipboard=unnamedplus   " Set the clipboard as the default storage of copy
+else
+    set clipboard=unnamed       " Set the clipboard as the default storage of copy
+endif
 
 set list                    " Show none-character
 set listchars=tab:>>,trail:$,extends:#,nbsp:$
@@ -136,15 +148,17 @@ set wildmenu                    " Show hint on command when tab is pressed
 set title
 set history=1000
 set undolevels=1000
-
-
-
-" Sets where vim-session files will be stored
-exec 'set dir='.g:VIMRC_BASE_URL.'/vim/sessions/'
 set lazyredraw                  " Buffers the vim motions
 set switchbuf+=usetab,newtab    " Open files in quick list in new tab or re-use tab
+set pumheight=10                " Autocomplete maximum height
 
-set pumheight=10
+
+
+" ======= BackUp Settings =========
+set noswapfile
+set nobackup
+" Sets where vim-session files will be stored
+exec 'set dir='.g:VIMRC_BASE_URL.'/sessions/'
 
 
 
@@ -155,8 +169,8 @@ nnoremap <silent> <C-h> :tabprevious<CR>
 nnoremap <silent> <C-l> :tabnext<CR>
 nnoremap <silent> <S-h> :tabmove -1<CR>
 nnoremap <silent> <S-l> :tabmove +1<CR>
-nnoremap <silent> <C-j> :call smooth_scroll#down(5, 0, 2)<CR>
-nnoremap <silent> <C-k> :call smooth_scroll#up(5, 0, 2)<CR>
+nnoremap <silent> <C-j> :call smooth_scroll#down(5, 0, 5)<CR>
+nnoremap <silent> <C-k> :call smooth_scroll#up(5, 0, 5)<CR>
 nnoremap ; :
 nnoremap j gj
 nnoremap k gk
@@ -186,6 +200,8 @@ inoremap <expr><S-TAB> pumvisible() ? "\<Up>"   : "\<TAB>"
 inoremap <expr><Space> pumvisible() ? neocomplete#smart_close_popup() . " " : "\<Space>"
 nmap <C-]>  :exec 'tjump! ' . expand('<cword>')<CR>
 vmap <C-]>  :exec 'tjump! ' . expand('<cword>')<CR>
+
+
 
 " ======= Code Folding =======
 set foldmarker={,}
