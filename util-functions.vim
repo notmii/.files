@@ -24,7 +24,7 @@ function! w:FindWord()
     endif
 
     let @/ = l:pattern
-    let l:grepCommand = 'noglob egrep -rns -C 2 --exclude=tags --exclude=*.tags --exclude="cscope.*" --exclude-dir=public/build "' . l:pattern . '" . > /tmp/grep-temp'
+    let l:grepCommand = 'grep -rns -C 2 --exclude=tags --exclude=*.tags --exclude="cscope.*" --exclude-dir=public/build "' . l:pattern . '" . > /tmp/grep-temp'
     call system(l:grepCommand)
 
     let oldefm = &efm
@@ -35,3 +35,35 @@ function! w:FindWord()
     call delete('/tmp/grep-temp')
 
 endfunction
+
+
+
+function! w:GoToTag(tagWord)
+
+    let l:tagfile = &tags
+    :tabe
+    execute 'set tags=' . l:tagfile
+    execute ':silent! tjump ' . a:tagWord
+
+    let l:tagFilename = expand('%:t')
+
+    if l:tagFilename == ''
+        :tabclose
+        :tabprevious
+    endif
+
+endfunction
+
+
+
+function! w:GetVisual() range
+    let reg_save = getreg('"')
+    let regtype_save = getregtype('"')
+    let cb_save = &clipboard
+    set clipboard&
+    normal! ""gvy
+    let selection = getreg('"')
+    call setreg('"', reg_save, regtype_save)
+    let &clipboard = cb_save
+    return selection
+endfunction 

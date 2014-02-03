@@ -101,7 +101,6 @@ hi PmenuSel     ctermbg=grey        ctermfg=black
 hi Search       ctermfg=black       ctermbg=yellow
 hi CursorLine   ctermbg=236         cterm=none
 hi CursorColumn ctermbg=236
-hi Normal       ctermbg=none
 
 set cursorcolumn
 set cursorline
@@ -172,7 +171,7 @@ inoremap <C-l> <Right>
 inoremap <C-Space> <C-x><C-o>
 vnoremap <silent> J :m '>+1<CR>gv=gv
 vnoremap <silent> K :m '<-2<CR>gv=gv
-nnoremap <silent> <C-f> :call w:FindWord()<CR>
+nnoremap <C-f> :call w:FindWord()<CR>
 
 inoremap <expr><TAB> neosnippet#expandable_or_jumpable() ?
     \ neosnippet#mappings#expand_or_jump_impl() :
@@ -184,8 +183,9 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 
 inoremap <expr><S-TAB> pumvisible() ? "\<Up>"   : "\<TAB>"
 inoremap <expr><Space> pumvisible() ? neocomplete#smart_close_popup() . " " : "\<Space>"
-nmap <C-]>  :exec 'tjump! ' . expand('<cword>')<CR>
-vmap <C-]>  :exec 'tjump! ' . expand('<cword>')<CR>
+" nmap <C-]>  :exec 'tabe \| tjump! ' . expand('<cword>')<CR>
+nmap <C-]> :call w:GoToTag(expand('<cword>'))<CR>
+vmap <C-]> :call w:GoToTag(w:GetVisual())<CR>
 
 " ======= Code Folding =======
 set foldmarker={,}
