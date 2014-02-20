@@ -78,6 +78,6 @@ php-fpm-restart() {
 
 alias lah='la -h'
 alias las='ls -ah'
-alias cp='rsync --progress -hsr'
 alias composer='composer -v'
+alias grep='noglob grep'
 
