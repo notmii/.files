@@ -24,5 +24,6 @@ NeoBundleFetch 'https://github.com/tpope/vim-fugitive.git'
 NeoBundleFetch 'https://github.com/joonty/vdebug.git'
 NeoBundleFetch 'https://github.com/terryma/vim-smooth-scroll.git'
 NeoBundleFetch 'https://github.com/shawncplus/phpcomplete.vim.git'
+NeoBundleFetch 'https://github.com/m2mdas/phpcomplete-extended.git'
 
 NeoBundleCheck
