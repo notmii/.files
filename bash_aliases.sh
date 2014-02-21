@@ -36,7 +36,7 @@ update-production() {
         -o -name '*.htm' \
         -o -name '*.html' \) \
         -and -not \( -path "./scripts/build-assets/*" \
-            -o -path "./public/build/*" \) \
+            -o -path "./public/build/**/*" \) \
         > javascript.files
 
     # ctags -R --fields=+afikKlmnsSzt --languages=javascript -f 'javascript.tags' -L 'javascript.files' --totals > /dev/null
@@ -47,7 +47,6 @@ update-production() {
     git checkout $CURRENT_BRANCH
     [[ $HAS_CHANGES > 0 ]] && git stash pop
     clear
-    git log -n 3
     git status
 }
 
