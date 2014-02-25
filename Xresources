@@ -1,0 +1,37 @@
+UXTerm*loginShell: true
+UXTerm*faceName: monaco:antialias=false:hinting=false
+UXTerm*faceSize: 7
+UXTerm*letterSpace: -2
+UXTerm*lineSpace: -2
+
+!UXTerm*font: Monaco:size=8:antialias=true:hinting=true,Monospace:size=8:antialias=true:hinting=true
+
+UXTerm*scrollBar: false
+! UXTerm*colorBDMode: false
+UXTerm*visualBell: false
+UXTerm*saveLines: 1000
+!UXTerm*termName: xterm-256color
+
+! UXTerm*VT100.tranlations: #override \
+
+! Molokai theme
+! UXTerm*background: #101010
+UXTerm*background: #000000
+UXTerm*foreground: #d0d0d0
+UXTerm*cursorColor: #d0d0d0
+UXTerm*color0: #101010
+UXTerm*color1: #960050
+UXTerm*color2: #66aa11
+UXTerm*color3: #c47f2c
+UXTerm*color4: #30309b
+UXTerm*color5: #7e40a5
+UXTerm*color6: #3579a8
+UXTerm*color7: #9999aa
+UXTerm*color8: #303030
+UXTerm*color9: #ff0090
+UXTerm*color10: #80ff00
+UXTerm*color11: #ffba68
+UXTerm*color12: #5f5fee
+UXTerm*color13: #bb88dd
+UXTerm*color14: #4eb4fa
+UXTerm*color15: #d0d0d0

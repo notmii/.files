@@ -225,6 +225,6 @@ let Tlist_Show_One_File = 1
 let tlist_php_settings='php;c:class;f:function'
 
 " ====== Project Specific Settings ===========
-if filereadable(".vimrc") && has("vim_starting")
-    source .vimrc
+if filereadable("_vimrc") && has("vim_starting")
+    source _vimrc
 endif
