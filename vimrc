@@ -15,6 +15,7 @@ if has("vim_starting")
     filetype plugin indent on
 
     au BufNewFile,BufRead *.tpl,*.smarty    set filetype=html
+    au BufNewFile,BufRead *.less            set filetype=css
     au filetype css             setlocal omnifunc=csscomplete#CompleteCSS
     au filetype html,markdown   setlocal omnifunc=htmlcomplete#CompleteTags
     au filetype javascript,js   setlocal omnifunc=javascriptcomplete#CompleteJS
