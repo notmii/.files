@@ -65,7 +65,7 @@ nnoremap <silent> <F3> :NERDTreeTabsToggle<CR>
 
 
 
-" ====== CtrlP ===============================
+" ====== CtrlP Settings ======================
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmp = '<CtrlPMixed>'
 let g:ctrlp_user_command = 'find %s -type f'
@@ -77,14 +77,33 @@ let g:ctrlp_open_multiple_files = 'tjr'
 
 
 
-" ======= Power Line Settings =======
-" let g:Powerline_symbols = 'fancy'
+" ======= Airline & Status line Settings =====
 set laststatus=2
-set term=xterm-256color     " [ builtin_xterm | xterm-256color ]
+let g:airline_theme="dark"
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+
+
+
+" ======= VIM Signify settings ===============
+let g:signify_vcs_list = [ 'git' ]
+let g:signify_difftool = 'meld'
+let g:signify_sign_add               = '+'
+let g:signify_sign_change            = '!'
+let g:signify_sign_delete            = '_'
+let g:signify_sign_delete_first_line = '‾'
+highlight DiffAdd           cterm=bold ctermbg=none ctermfg=119
+highlight DiffDelete        cterm=bold ctermbg=none ctermfg=167
+highlight DiffChange        cterm=bold ctermbg=none ctermfg=227
+highlight SignifySignAdd    cterm=bold ctermbg=237  ctermfg=119
+highlight SignifySignDelete cterm=bold ctermbg=237  ctermfg=167
+highlight SignifySignChange cterm=bold ctermbg=237  ctermfg=227
 
 
 
 " ======= Theme Settings ============
+set term=xterm-256color     " [ builtin_xterm | xterm-256color ]
 colorscheme molokai
 syntax enable
 hi normal       ctermbg=232

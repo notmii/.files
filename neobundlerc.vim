@@ -18,12 +18,13 @@ NeoBundleFetch 'https://github.com/kien/ctrlp.vim.git'
 NeoBundleFetch 'https://github.com/Raimondi/delimitMate.git'
 NeoBundleFetch 'https://github.com/scrooloose/nerdtree.git'
 NeoBundleFetch 'https://github.com/jistr/vim-nerdtree-tabs.git'
-NeoBundleFetch 'https://github.com/Lokaltog/vim-powerline.git'
 NeoBundleFetch 'https://github.com/scrooloose/syntastic.git'
 NeoBundleFetch 'https://github.com/tpope/vim-fugitive.git'
-NeoBundleFetch 'https://github.com/joonty/vdebug.git'
 NeoBundleFetch 'https://github.com/terryma/vim-smooth-scroll.git'
 NeoBundleFetch 'https://github.com/shawncplus/phpcomplete.vim.git'
 NeoBundleFetch 'https://github.com/m2mdas/phpcomplete-extended.git'
+
+NeoBundleFetch 'https://github.com/bling/vim-airline.git'
+NeoBundleFetch 'https://github.com/mhinz/vim-signify.git'
 
 NeoBundleCheck
