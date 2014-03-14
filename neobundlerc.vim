@@ -21,10 +21,13 @@ NeoBundleFetch 'https://github.com/jistr/vim-nerdtree-tabs.git'
 NeoBundleFetch 'https://github.com/scrooloose/syntastic.git'
 NeoBundleFetch 'https://github.com/tpope/vim-fugitive.git'
 NeoBundleFetch 'https://github.com/terryma/vim-smooth-scroll.git'
-NeoBundleFetch 'https://github.com/shawncplus/phpcomplete.vim.git'
-NeoBundleFetch 'https://github.com/m2mdas/phpcomplete-extended.git'
+" NeoBundleFetch 'https://github.com/shawncplus/phpcomplete.vim.git'
+" NeoBundleFetch 'https://github.com/m2mdas/phpcomplete-extended.git'
 
 NeoBundleFetch 'https://github.com/bling/vim-airline.git'
 NeoBundleFetch 'https://github.com/mhinz/vim-signify.git'
+NeoBundleFetch 'https://github.com/spf13/PIV.git'
+NeoBundleFetch 'https://github.com/vim-scripts/HTML-AutoCloseTag.git'
+NeoBundleFetch 'https://github.com/vim-scripts/matchit.zip.git'
 
 NeoBundleCheck
