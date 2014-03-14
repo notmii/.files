@@ -4,11 +4,11 @@ search() {
 
 update-production() {
     HAS_CHANGES=$(git status --porcelain 2>/dev/null|egrep "^( M|M)"|wc -l)
-    [[ $HAS_CHANGES > 0 ]] && git stash
+    [[ $HAS_CHANGES > 0 ]] && git stash -u
 
     CURRENT_BRANCH=$(git branch|grep "^*"|awk '{print $2}')
     git checkout production
-    git pull
+    git reset --hard production/master
 
     # echo "Updating CSCOPE"
     # find -type f  \( \
@@ -22,21 +22,23 @@ update-production() {
 
     # cscope -b -q -U -i cscope.files
 
-    find -type f  \( -name '*.php' \) \
-        -and -not \( -path "./scripts/build-assets/*" \
-            -o -path "./public/build/*" \) \
+    find -type f  \( -name '*.php' \)                   \
+        -and -not \( -path "./scripts/build-assets/*"   \
+            -o -path "./public/build/*" \)              \
         > php.files
 
     ctags -R --fields=+aimS --languages=php -f 'php.tags' -L 'php.files' --totals > /dev/null
 
     rm php.files
 
-    find -type f  \( \
-        -name '*.js' \
-        -o -name '*.htm' \
-        -o -name '*.html' \) \
-        -and -not \( -path "./scripts/build-assets/*" \
-            -o -path "./public/build/**/*" \) \
+    find -type f  \(                                    \
+        -name '*.js'                                    \
+        -o -name '*.htm'                                \
+        -o -name '*.html' \)                            \
+        -and -not \( -path "./scripts/build-assets/*"   \
+            -o -path "./public/build/**/*"              \
+            -o -name '*.min.js'                         \
+            -o -name '*-min.js' \)                      \
         > javascript.files
 
     # ctags -R --fields=+afikKlmnsSzt --languages=javascript -f 'javascript.tags' -L 'javascript.files' --totals > /dev/null
@@ -78,5 +80,6 @@ php-fpm-restart() {
 alias lah='la -h'
 alias las='ls -ah'
 alias composer='composer -v'
-alias grep='noglob grep'
+alias gr='noglob grep -ns'
+alias rgr='noglob rgrep -ns'
 
