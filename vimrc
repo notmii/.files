@@ -6,6 +6,7 @@ if has("vim_starting")
     exec 'set runtimepath+=' . g:VIMRC_BASE_URL . '/vim/bundle/neobundle.vim/'
     exec 'source ' . g:VIMRC_BASE_URL . '/neobundlerc.vim'
     exec 'source ' . g:VIMRC_BASE_URL . '/util-functions.vim'
+    exec 'source ' . g:VIMRC_BASE_URL . '/gvimrc.vim'
 
     call pathogen#infect()
     call pathogen#helptags()
@@ -73,14 +74,6 @@ let g:ctrlp_match_window_bottom = 1
 let g:ctrlp_max_files = 0
 let g:ctrlp_open_new_file = 't'
 let g:ctrlp_open_multiple_files = 'tjr'
-
-
-
-" ======= GUI Vim ===================
-set guioptions-=m           " Remove menu bar
-set guioptions-=T           " Remove toolbar
-set guioptions-=r           " Remove right-hand scroll bar
-set guifont=Monaco\ 7
 
 
 
