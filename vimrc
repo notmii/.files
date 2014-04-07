@@ -11,7 +11,7 @@ if has("vim_starting")
     call pathogen#infect()
     call pathogen#helptags()
     call pathogen#incubate()
-    set completeopt=preview,longest,menuone
+   set completeopt=preview,longest,menuone
 
     filetype plugin indent on
 
@@ -81,8 +81,28 @@ let g:ctrlp_open_multiple_files = 'tjr'
 set laststatus=2
 let g:airline_theme="dark"
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline_enable_branch     = 1
+let g:airline_enable_syntastic  = 1
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_symbols = {}
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.whitespace = 'Ξ'
+let g:airline_mode_map = {
+    \ '__' : '-',
+    \ 'n'  : 'N',
+    \ 'i'  : 'I',
+    \ 'R'  : 'R',
+    \ 'c'  : 'C',
+    \ 'v'  : 'V',
+    \ 'V'  : 'V',
+    \ '' : 'V',
+    \ 's'  : 'S',
+    \ 'S'  : 'S',
+    \ '' : 'S',
+    \ }
 
 
 
@@ -104,12 +124,15 @@ highlight SignifySignChange cterm=bold ctermbg=237  ctermfg=227
 
 " ======= Theme Settings ============
 set term=xterm-256color     " [ builtin_xterm | xterm-256color ]
+set nocursorcolumn
+set nocursorline
 colorscheme molokai
 syntax enable
 hi normal       ctermbg=232
 hi Pmenu        ctermbg=black       ctermfg=white
 hi PmenuSel     ctermbg=grey        ctermfg=black
 hi Search       ctermfg=black       ctermbg=yellow
+hi NonText      ctermfg=none        cterm=none
 hi CursorLine   ctermbg=none        cterm=underline
 hi CursorColumn ctermbg=236
 
@@ -119,9 +142,6 @@ if &term =~ '256color'
     set t_Co=256
 endif
 
-set cursorcolumn
-set cursorline
-
 
 
 " ======= Personal Settings ========
@@ -130,7 +150,7 @@ set mouse=c         " Enable mouse interaction
 set hlsearch        " Highlight search
 set incsearch       " Search as you type
 set ignorecase      " Ignore case in searching
-set smartcase
+set smartcase       " When search starts with capital letter do case sensitive search
 set splitright      " Open split window on the right of current pane
 set splitbelow      " Open split window on the bottom of current pane
 
@@ -147,12 +167,6 @@ set nowrap                  " Set to no wrapping
 set linebreak               " Wrap lines on convenient points
 set backspace=indent,eol,start
 
-if has('unnamedplus')
-    set clipboard=unnamedplus   " Set the clipboard as the default storage of copy
-else
-    set clipboard=unnamed       " Set the clipboard as the default storage of copy
-endif
-
 set list                    " Show none-character
 set listchars=tab:>>,trail:$,extends:#,nbsp:$
 set pastetoggle=<F2>
@@ -164,6 +178,20 @@ set undolevels=1000
 set lazyredraw                  " Buffers the vim motions
 set switchbuf+=usetab,newtab    " Open files in quick list in new tab or re-use tab
 set pumheight=10                " Autocomplete maximum height
+
+" Set the clipboard as the default storage of copy
+if has('unnamedplus')
+    set clipboard=unnamedplus
+elseif
+    set clipboard=unnamed       " Set the clipboard as the default storage of copy
+endif
+
+
+
+" Fixed for slow vertical scrooling when vertical split is applied
+set ttyfast
+set ttyscroll=5
+set scrolljump=1
 
 
 
@@ -182,11 +210,12 @@ nnoremap <silent> <C-h> :tabprevious<CR>
 nnoremap <silent> <C-l> :tabnext<CR>
 nnoremap <silent> <S-h> :tabmove -1<CR>
 nnoremap <silent> <S-l> :tabmove +1<CR>
-nnoremap <silent> <C-j> :call smooth_scroll#down(5, 0, 5)<CR>
-nnoremap <silent> <C-k> :call smooth_scroll#up(5, 0, 5)<CR>
-nnoremap ; :
+noremap <silent> <C-j> :call smooth_scroll#down(5, 0, 5)<CR>
+noremap <silent> <C-k> :call smooth_scroll#up(5, 0, 5)<CR>
+noremap ; :
 nnoremap j gj
 nnoremap k gk
+let mapleader=','
 
 nnoremap <silent> J :m .+1<CR>
 nnoremap <silent> K :m .-2<CR>
@@ -217,6 +246,14 @@ vmap <C-]> :call w:GoToTag(w:GetVisual())<CR>
 
 
 
+" ===== EASY MOTION SETTINGS =========
+map  / <Plug>(easymotion-sn)
+omap / <Plug>(easymotion-tn)
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
+map  <Plug>(easymotion-s2)
+
+
 " ======= Code Folding =======
 set foldmarker={,}
 set foldmethod=marker
@@ -231,10 +268,7 @@ set foldcolumn=5
 "       let @/ = l:word
 "   endfunction
 
-" ====== Taglist (Tlist) =====================
-let Tlist_Use_Right_Window = 1
-let Tlist_Show_One_File = 1
-let tlist_php_settings='php;c:class;f:function'
+
 
 " ====== Project Specific Settings ===========
 if filereadable("_vimrc") && has("vim_starting")

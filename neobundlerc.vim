@@ -29,5 +29,7 @@ NeoBundleFetch 'https://github.com/mhinz/vim-signify.git'
 NeoBundleFetch 'https://github.com/spf13/PIV.git'
 NeoBundleFetch 'https://github.com/vim-scripts/HTML-AutoCloseTag.git'
 NeoBundleFetch 'https://github.com/vim-scripts/matchit.zip.git'
+NeoBundleFetch 'https://github.com/Lokaltog/vim-easymotion.git'
+NeoBundleFetch 'https://github.com/tpope/vim-surround.git'
 
 NeoBundleCheck
