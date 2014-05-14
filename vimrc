@@ -238,7 +238,7 @@ inoremap <C-Space> <C-x><C-o>
 vnoremap <silent> J :m '>+1<CR>gv=gv
 vnoremap <silent> K :m '<-2<CR>gv=gv
 nnoremap <C-f> :call w:FindWord()<CR>
-vnoremap y :yank<CR>:silent call system('xclip -sel clip -i', @0)<CR>
+vnoremap y y :call system('xclip -sel clip -i', @0)<CR>
 
 inoremap <expr><TAB> neosnippet#expandable_or_jumpable() ?
     \ neosnippet#mappings#expand_or_jump_impl() :
