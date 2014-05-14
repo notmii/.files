@@ -1,5 +1,4 @@
 if has("vim_starting")
-
     set nocompatible
     let g:VIMRC_BASE_URL = resolve(expand('<sfile>:p:h'))
 
@@ -11,7 +10,7 @@ if has("vim_starting")
     call pathogen#infect()
     call pathogen#helptags()
     call pathogen#incubate()
-   set completeopt=preview,longest,menuone
+    set completeopt=preview,longest,menuone
 
     filetype plugin indent on
 
@@ -27,8 +26,8 @@ if has("vim_starting")
     if filereadable('cscope.out')
         cs add cscope.out
     endif
-
 endif
+
 
 
 " ====== NEOComplCache =====================
@@ -239,6 +238,7 @@ inoremap <C-Space> <C-x><C-o>
 vnoremap <silent> J :m '>+1<CR>gv=gv
 vnoremap <silent> K :m '<-2<CR>gv=gv
 nnoremap <C-f> :call w:FindWord()<CR>
+vnoremap y :yank<CR>:silent call system('xclip -sel clip -i', @0)<CR>
 
 inoremap <expr><TAB> neosnippet#expandable_or_jumpable() ?
     \ neosnippet#mappings#expand_or_jump_impl() :
@@ -251,8 +251,8 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 inoremap <expr><S-TAB> pumvisible() ? "\<Up>"   : "\<TAB>"
 inoremap <expr><Space> pumvisible() ? neocomplcache#smart_close_popup() . " " : "\<Space>"
 " nmap <C-]>  :exec 'tabe \| tjump! ' . expand('<cword>')<CR>
-nmap <C-]> :call w:GoToTag(expand('<cword>'))<CR>
-vmap <C-]> :call w:GoToTag(w:GetVisual())<CR>
+" nmap <C-]> :call w:GoToTag(expand('<cword>'))<CR>
+" vmap <C-]> :call w:GoToTag(w:GetVisual())<CR>
 
 
 
