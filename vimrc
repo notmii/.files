@@ -182,7 +182,7 @@ set pumheight=10                " Autocomplete maximum height
 " Set the clipboard as the default storage of copy
 if has('unnamedplus')
     set clipboard=unnamedplus
-elseif
+else
     set clipboard=unnamed       " Set the clipboard as the default storage of copy
 endif
 

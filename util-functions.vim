@@ -1,4 +1,4 @@
-function! w:phpAutocommand()
+function! s:phpAutocommand()
 
     if filereadable('php.tags')
         setlocal tags=php.tags
@@ -15,7 +15,7 @@ endfunction
 
 
 
-function! w:FindWord()
+function! s:FindWord()
 
     let l:pattern = input("FindWord:")
 
@@ -38,7 +38,7 @@ endfunction
 
 
 
-function! w:GoToTag(tagWord)
+function! s:GoToTag(tagWord)
 
     let l:tagfile = &tags
     :tabe
@@ -56,7 +56,7 @@ endfunction
 
 
 
-function! w:GetVisual() range
+function! s:GetVisual() range
     let reg_save = getreg('"')
     let regtype_save = getregtype('"')
     let cb_save = &clipboard
