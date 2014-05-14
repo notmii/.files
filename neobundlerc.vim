@@ -1,7 +1,8 @@
 exec 'call neobundle#rc(expand("' . g:VIMRC_BASE_URL . '/vim/bundle/"))'
 
 NeoBundleFetch 'https://github.com/Shougo/neobundle.vim.git'
-NeoBundleFetch 'https://github.com/Shougo/neocomplete.vim.git'
+" NeoBundleFetch 'https://github.com/Shougo/neocomplete.vim.git'
+NeoBundleFetch 'https://github.com/Shougo/neocomplcache.vim.git'
 NeoBundleFetch 'https://github.com/Shougo/neosnippet.vim.git'
 NeoBundleFetch 'https://github.com/Shougo/unite.vim.git'
 
@@ -26,7 +27,7 @@ NeoBundleFetch 'https://github.com/terryma/vim-smooth-scroll.git'
 
 NeoBundleFetch 'https://github.com/bling/vim-airline.git'
 NeoBundleFetch 'https://github.com/mhinz/vim-signify.git'
-NeoBundleFetch 'https://github.com/spf13/PIV.git'
+" NeoBundleFetch 'https://github.com/spf13/PIV.git'
 NeoBundleFetch 'https://github.com/vim-scripts/HTML-AutoCloseTag.git'
 NeoBundleFetch 'https://github.com/vim-scripts/matchit.zip.git'
 NeoBundleFetch 'https://github.com/Lokaltog/vim-easymotion.git'

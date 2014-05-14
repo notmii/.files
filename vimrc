@@ -31,24 +31,34 @@ if has("vim_starting")
 endif
 
 
+" ====== NEOComplCache =====================
+let g:neocomplcache_enable_at_startup                   = 1
+let g:neocomplcache_enable_smart_case                   = 1
+let g:neocomplcache_min_syntax_length                   = 3
+let g:neocomplcache_lock_buffer_name_pattern            = '\*ku\*'
+
+if !exists('g:neocomplcache_keyword_patterns')
+    let g:neocomplcache_keyword_patterns = {}
+endif
+let g:neocomplcache_keyword_patterns['default'] = '[^. \t]->\h\w*\|\h\w*::\|new '
 
 " ====== NEOComplete =======================
-let g:neocomplete#enable_at_startup                     = 1
-let g:neocomplete#use_vimproc                           = 1
-let g:neocomplete#min_keyword_length                    = 2
-let g:neocomplete#sources#syntax#min_keyword_length     = 2
-let g:neocomplete#enable_prefetch                       = 1
+" let g:neocomplete#enable_at_startup                     = 1
+" let g:neocomplete#use_vimproc                           = 1
+" let g:neocomplete#min_keyword_length                    = 2
+" let g:neocomplete#sources#syntax#min_keyword_length     = 2
+" let g:neocomplete#enable_prefetch                       = 1
 
-if !exists('g:neocomplete#sources#omni#input_patterns')
-    let g:neocomplete#sources#omni#input_patterns = {}
-endif
-
-if !exists('g:neocomplete#force_omni_input_patterns')
-    let g:neocomplete#force_omni_input_patterns = {}
-endif
-
-let g:neocomplete#sources#omni#input_patterns.php   = '[^. \t]->\h\w*\|\h\w*::\|new '
-let g:neocomplete#force_omni_input_patterns.php     = '[^. \t]->\h\w*\|\h\w*::\|new '
+" if !exists('g:neocomplete#sources#omni#input_patterns')
+"     let g:neocomplete#sources#omni#input_patterns = {}
+" endif
+"
+" if !exists('g:neocomplete#force_omni_input_patterns')
+"     let g:neocomplete#force_omni_input_patterns = {}
+" endif
+"
+" let g:neocomplete#sources#omni#input_patterns.php   = '[^. \t]->\h\w*\|\h\w*::\|new '
+" let g:neocomplete#force_omni_input_patterns.php     = '[^. \t]->\h\w*\|\h\w*::\|new '
 
 
 
@@ -128,7 +138,7 @@ set nocursorcolumn
 set nocursorline
 colorscheme molokai
 syntax enable
-hi normal       ctermbg=232
+hi normal       ctermbg=none
 hi Pmenu        ctermbg=black       ctermfg=white
 hi PmenuSel     ctermbg=grey        ctermfg=black
 hi Search       ctermfg=black       ctermbg=yellow
@@ -239,7 +249,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
     \ pumvisible() ? "\<Down>" : "\<TAB>"
 
 inoremap <expr><S-TAB> pumvisible() ? "\<Up>"   : "\<TAB>"
-inoremap <expr><Space> pumvisible() ? neocomplete#smart_close_popup() . " " : "\<Space>"
+inoremap <expr><Space> pumvisible() ? neocomplcache#smart_close_popup() . " " : "\<Space>"
 " nmap <C-]>  :exec 'tabe \| tjump! ' . expand('<cword>')<CR>
 nmap <C-]> :call w:GoToTag(expand('<cword>'))<CR>
 vmap <C-]> :call w:GoToTag(w:GetVisual())<CR>
