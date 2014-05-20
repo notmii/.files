@@ -22,6 +22,9 @@ if has("vim_starting")
     au filetype python          setlocal omnifunc=pythoncomplete#Complete
     au filetype xml             setlocal omnifunc=xmlcomplete#CompleteTags
     au filetype php             call w:phpAutocommand()
+    au InsertEnter *            if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
+
+    set autoread
 
     if filereadable('cscope.out')
         cs add cscope.out

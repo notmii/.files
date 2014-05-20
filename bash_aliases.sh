@@ -82,4 +82,4 @@ alias las='ls -ah'
 alias composer='composer -v'
 alias gr='noglob grep -ns'
 alias rgr='noglob rgrep -ns'
-
+alias tmux='tmux attach'
