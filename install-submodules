@@ -2,13 +2,24 @@
 
 SOURCE="${BASH_SOURCE[0]}"
 while [ -h "$SOURCE" ]; do
-  DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
-  SOURCE="$(readlink "$SOURCE")"
-  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+    DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+    SOURCE="$(readlink "$SOURCE")"
+    [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
 done
 BASE_DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 echo $BASE_DIR
 
-git clone https://github.com/robbyrussell/oh-my-zsh.git             $BASE_DIR/oh-my-zsh
+sudo apt-get install -y cmake exuberant-ctags vim-tiny
+
+git clone https://github.com/robbyrussell/oh-my-zsh.git     $BASE_DIR/oh-my-zsh
+git clone https://github.com/gmarik/Vundle.vim.git          $BASE_DIR/vim/bundle/Vundle.vim
+git clone https://github.com/garybernhardt/selecta.git      $BASE_DIR/selecta
+git clone https://github.com/Valloric/YouCompleteMe.git     $BASE_DIR/vim/bundle/YouCompleteMe
+
+echo "source $BASE_DIR/zshrc" >> ~/.zshrc
+echo "export PATH=\$PATH:$BASE_DIR/selecta" >> ~/.zshrc
+echo "source $BASE_DIR/vimrc" >> ~/.vimrc
+
+./$BASE_DIR/vim/bundle/YouCompleteMe/install.sh
 
 cd $BASE_DIR

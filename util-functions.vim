@@ -1,5 +1,4 @@
 function! s:phpAutocommand()
-
     if filereadable('php.tags')
         setlocal tags=php.tags
     endif
@@ -10,13 +9,9 @@ function! s:phpAutocommand()
     setlocal omnifunc=phpcomplete#CompletePHP
     let php_sql_query=1
     let php_htmlInStrings=1
-
 endfunction
 
-
-
 function! s:FindWord()
-
     let l:pattern = input("FindWord:")
 
     if l:pattern == ''
@@ -33,13 +28,9 @@ function! s:FindWord()
     :copen
     let &efm = oldefm
     call delete('/tmp/grep-temp')
-
 endfunction
 
-
-
 function! s:GoToTag(tagWord)
-
     let l:tagfile = &tags
     :tabe
     execute 'set tags=' . l:tagfile
@@ -51,10 +42,7 @@ function! s:GoToTag(tagWord)
         :tabclose
         :tabprevious
     endif
-
 endfunction
-
-
 
 function! s:GetVisual() range
     let reg_save = getreg('"')
@@ -67,3 +55,30 @@ function! s:GetVisual() range
     let &clipboard = cb_save
     return selection
 endfunction 
+
+" Strip the newline from the end of a string
+function! Chomp(str)
+  return substitute(a:str, '\n$', '', '')
+endfunction
+
+" Find a file and pass it to cmd
+function! DmenuOpen(cmd)
+  let fname = Chomp(system("find | dmenu -i -l 20 -fn monaco-8:normal -p " . a:cmd))
+  if empty(fname)
+    return
+  endif
+  execute a:cmd . " " . fname
+endfunction
+
+function! SelectaCommand()
+    try
+        silen let selection = system('find|selecta')
+    catch /Vim:Interrupt/
+        redraw!
+        return
+    endtry
+
+    redraw!
+    exec "tabe " . selection
+endfunction
+
