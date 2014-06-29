@@ -6,7 +6,7 @@ exec 'source ' . g:VIMRC_BASE_URL . '/util-functions.vim'
 exec 'source ' . g:VIMRC_BASE_URL . '/mappings.vim'
 " exec 'source ' . g:VIMRC_BASE_URL . '/gvimrc.vim'
 
-set completeopt=preview,longest,menuone
+set completeopt=longest,menuone,preview
 
 filetype plugin indent on
 au BufNewFile,BufRead *.tpl,*.smarty    set filetype=html
@@ -15,6 +15,7 @@ au filetype css             setlocal omnifunc=csscomplete#CompleteCSS
 au filetype html,markdown   setlocal omnifunc=htmlcomplete#CompleteTags
 au filetype javascript,js   setlocal omnifunc=javascriptcomplete#CompleteJS
 au filetype python          setlocal omnifunc=pythoncomplete#Complete
+au FileType cs              nnoremap <F5> :wa!<cr>:OmniSharpBuildAsync<cr>
 au filetype xml             setlocal omnifunc=xmlcomplete#CompleteTags
 " au filetype php             call w:phpAutocommand()
 au InsertEnter *            if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
@@ -48,16 +49,16 @@ let g:tagbar_autopreview                                = 0
 let g:tagbar_compact                                    = 1
 let g:tagbar_show_visibility                            = 1
 
-" ====== NEOComplCache =====================
-let g:neocomplcache_enable_at_startup                   = 1
-let g:neocomplcache_enable_smart_case                   = 1
-let g:neocomplcache_min_syntax_length                   = 3
-let g:neocomplcache_lock_buffer_name_pattern            = '\*ku\*'
-
-if !exists('g:neocomplcache_keyword_patterns')
-    let g:neocomplcache_keyword_patterns = {}
-endif
-let g:neocomplcache_keyword_patterns['default'] = '[^. \t]->\h\w*\|\h\w*::\|new '
+"" ====== NEOComplCache =====================
+" let g:neocomplcache_enable_at_startup                   = 1
+" let g:neocomplcache_enable_smart_case                   = 1
+" let g:neocomplcache_min_syntax_length                   = 3
+" let g:neocomplcache_lock_buffer_name_pattern            = '\*ku\*'
+"
+" if !exists('g:neocomplcache_keyword_patterns')
+"     let g:neocomplcache_keyword_patterns = {}
+" endif
+" let g:neocomplcache_keyword_patterns['default'] = '[^. \t]->\h\w*\|\h\w*::\|new '
 
 
 " ====== NEOSnippet ==========================
@@ -72,11 +73,6 @@ let g:nerdtree_tabs_smart_startup_focus     = 1
 let g:nerdtree_tabs_autoclose               = 1
 let g:nerdtree_tabs_focus_on_files          = 1
 nnoremap <silent> <F3> :NERDTreeTabsToggle<CR>
-
-
-
-" ====== JEDI-VIM Settings ===================
-let g:jedi#popup_select_first               = 0
 
 
 

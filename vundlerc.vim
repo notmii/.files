@@ -27,11 +27,15 @@ Plugin 'https://github.com/majutsushi/tagbar.git'
 Plugin 'https://github.com/xolox/vim-misc.git'
 Plugin 'https://github.com/Valloric/YouCompleteMe.git'
 Plugin 'https://github.com/xolox/vim-easytags.git'
+Plugin 'https://github.com/tpope/vim-dispatch.git'
 
 " PHP plugins
 " Plugin 'https://github.com/spf13/PIV.git'
 " Plugin 'https://github.com/shawncplus/phpcomplete.vim.git'
 " Plugin 'https://github.com/m2mdas/phpcomplete-extended.git'
+
+" C# Plugins
+Plugin 'https://github.com/nosami/Omnisharp.git'
 
 " Python plugins
 " Plugin 'https://github.com/davidhalter/jedi-vim.git'
