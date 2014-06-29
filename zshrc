@@ -71,3 +71,5 @@ fi
 if [[ -e $customs ]]; then
     source $customs
 fi
+
+export PATH="$PATH:$BASE_DIR/selecta/"

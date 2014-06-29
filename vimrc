@@ -1,71 +1,70 @@
-if has("vim_starting")
-    set nocompatible
-    let g:VIMRC_BASE_URL = resolve(expand('<sfile>:p:h'))
+set nocompatible
+let g:VIMRC_BASE_URL = resolve(expand('<sfile>:p:h'))
 
-    exec 'set runtimepath+=' . g:VIMRC_BASE_URL . '/vim/bundle/neobundle.vim/'
-    exec 'source ' . g:VIMRC_BASE_URL . '/neobundlerc.vim'
-    exec 'source ' . g:VIMRC_BASE_URL . '/util-functions.vim'
-    exec 'source ' . g:VIMRC_BASE_URL . '/gvimrc.vim'
+exec 'source ' . g:VIMRC_BASE_URL . '/vundlerc.vim'
+exec 'source ' . g:VIMRC_BASE_URL . '/util-functions.vim'
+exec 'source ' . g:VIMRC_BASE_URL . '/mappings.vim'
+" exec 'source ' . g:VIMRC_BASE_URL . '/gvimrc.vim'
 
-    call pathogen#infect()
-    call pathogen#helptags()
-    call pathogen#incubate()
-    set completeopt=preview,longest,menuone
+set completeopt=longest,menuone,preview
 
-    filetype plugin indent on
+filetype plugin indent on
+au BufNewFile,BufRead *.tpl,*.smarty    set filetype=html
+au BufNewFile,BufRead *.less            set filetype=css
+au filetype css             setlocal omnifunc=csscomplete#CompleteCSS
+au filetype html,markdown   setlocal omnifunc=htmlcomplete#CompleteTags
+au filetype javascript,js   setlocal omnifunc=javascriptcomplete#CompleteJS
+au filetype python          setlocal omnifunc=pythoncomplete#Complete
+au FileType cs              nnoremap <F5> :wa!<cr>:OmniSharpBuildAsync<cr>
+au filetype xml             setlocal omnifunc=xmlcomplete#CompleteTags
+" au filetype php             call w:phpAutocommand()
+au InsertEnter *            if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
+set autoread
 
-    au BufNewFile,BufRead *.tpl,*.smarty    set filetype=html
-    au BufNewFile,BufRead *.less            set filetype=css
-    au filetype css             setlocal omnifunc=csscomplete#CompleteCSS
-    au filetype html,markdown   setlocal omnifunc=htmlcomplete#CompleteTags
-    au filetype javascript,js   setlocal omnifunc=javascriptcomplete#CompleteJS
-    au filetype python          setlocal omnifunc=pythoncomplete#Complete
-    au filetype xml             setlocal omnifunc=xmlcomplete#CompleteTags
-    au filetype php             call w:phpAutocommand()
-    au InsertEnter *            if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
+" ======= Code Folding =======
+set foldmarker={,}
+set foldmethod=marker
+set foldcolumn=5
 
-    set autoread
+filetype plugin indent on
 
-    if filereadable('cscope.out')
-        cs add cscope.out
-    endif
-endif
+au BufNewFile,BufRead *.tpl,*.smarty    set filetype=html
+au BufNewFile,BufRead *.less            set filetype=css
+au filetype css             setlocal omnifunc=csscomplete#CompleteCSS
+au filetype html,markdown   setlocal omnifunc=htmlcomplete#CompleteTags
+au filetype javascript,js   setlocal omnifunc=javascriptcomplete#CompleteJS
+au filetype python          setlocal omnifunc=pythoncomplete#Complete
+au filetype xml             setlocal omnifunc=xmlcomplete#CompleteTags
+" au filetype php             call w:phpAutocommand()
+au filetype python          set foldmethod=indent
 
-
-
-" ====== NEOComplCache =====================
-let g:neocomplcache_enable_at_startup                   = 1
-let g:neocomplcache_enable_smart_case                   = 1
-let g:neocomplcache_min_syntax_length                   = 3
-let g:neocomplcache_lock_buffer_name_pattern            = '\*ku\*'
-
-if !exists('g:neocomplcache_keyword_patterns')
-    let g:neocomplcache_keyword_patterns = {}
-endif
-let g:neocomplcache_keyword_patterns['default'] = '[^. \t]->\h\w*\|\h\w*::\|new '
-
-" ====== NEOComplete =======================
-" let g:neocomplete#enable_at_startup                     = 1
-" let g:neocomplete#use_vimproc                           = 1
-" let g:neocomplete#min_keyword_length                    = 2
-" let g:neocomplete#sources#syntax#min_keyword_length     = 2
-" let g:neocomplete#enable_prefetch                       = 1
-
-" if !exists('g:neocomplete#sources#omni#input_patterns')
-"     let g:neocomplete#sources#omni#input_patterns = {}
+" if filereadable('cscope.out')
+"     cs add cscope.out
 " endif
-"
-" if !exists('g:neocomplete#force_omni_input_patterns')
-"     let g:neocomplete#force_omni_input_patterns = {}
-" endif
-"
-" let g:neocomplete#sources#omni#input_patterns.php   = '[^. \t]->\h\w*\|\h\w*::\|new '
-" let g:neocomplete#force_omni_input_patterns.php     = '[^. \t]->\h\w*\|\h\w*::\|new '
 
+" ====== TAGBAR Settings ===================
+let g:tagbar_autofocus                                  = 1
+let g:tagbar_indent                                     = 2
+let g:tagbar_autopreview                                = 0
+let g:tagbar_compact                                    = 1
+let g:tagbar_show_visibility                            = 1
+
+"" ====== NEOComplCache =====================
+" let g:neocomplcache_enable_at_startup                   = 1
+" let g:neocomplcache_enable_smart_case                   = 1
+" let g:neocomplcache_min_syntax_length                   = 3
+" let g:neocomplcache_lock_buffer_name_pattern            = '\*ku\*'
+"
+" if !exists('g:neocomplcache_keyword_patterns')
+"     let g:neocomplcache_keyword_patterns = {}
+" endif
+" let g:neocomplcache_keyword_patterns['default'] = '[^. \t]->\h\w*\|\h\w*::\|new '
 
 
 " ====== NEOSnippet ==========================
 let g:neosnippet#enable_preview             = 1
+
+
 
 " ====== NERDTree and NERDTreeTabs ===========
 let g:nerdtree_tabs_no_startup_for_diff     = 1
@@ -78,14 +77,14 @@ nnoremap <silent> <F3> :NERDTreeTabsToggle<CR>
 
 
 " ====== CtrlP Settings ======================
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmp = '<CtrlPMixed>'
-let g:ctrlp_user_command = 'find %s -type f'
-let g:ctrlp_regexp = 1
-let g:ctrlp_match_window_bottom = 1
-let g:ctrlp_max_files = 0
-let g:ctrlp_open_new_file = 't'
-let g:ctrlp_open_multiple_files = 'tjr'
+let g:ctrlp_map                     = '<c-p>'
+let g:ctrlp_cmp                     = '<CtrlPMixed>'
+let g:ctrlp_user_command            = 'find %s -type f'
+let g:ctrlp_regexp                  = 1
+let g:ctrlp_match_window_bottom     = 1
+let g:ctrlp_max_files               = 0
+let g:ctrlp_open_new_file           = 't'
+let g:ctrlp_open_multiple_files     = 'tjr'
 
 
 
@@ -207,57 +206,11 @@ set scrolljump=1
 
 
 
-" ======= BackUp Settings =========
+" ======= BACKUP SETTINGS =========
 set noswapfile
 set nobackup
 " Sets where vim-session files will be stored
 exec 'set dir='.g:VIMRC_BASE_URL.'/sessions/'
-
-
-
-" ======= Mappings ================
-nnoremap <silent> <C-t> :tabnew<CR>
-nnoremap <silent> <C-e> :tabclose<CR>
-nnoremap <silent> <C-h> :tabprevious<CR>
-nnoremap <silent> <C-l> :tabnext<CR>
-" nnoremap <silent> <S-h> :tabmove -1<CR>
-" nnoremap <silent> <S-l> :tabmove +1<CR>
-nnoremap <silent> <S-h> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
-nnoremap <silent> <S-l> :execute 'silent! tabmove ' . tabpagenr()<CR>
-noremap <silent> <C-j> :call smooth_scroll#down(5, 0, 5)<CR>
-noremap <silent> <C-k> :call smooth_scroll#up(5, 0, 5)<CR>
-noremap ; :
-nnoremap j gj
-nnoremap k gk
-let mapleader=','
-
-nnoremap <silent> J :m .+1<CR>
-nnoremap <silent> K :m .-2<CR>
-inoremap <silent> J <Esc>:m .+1<CR>==gi
-inoremap <silent> K <Esc>:m .-2<CR>==gi
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
-inoremap <C-Space> <C-x><C-o>
-vnoremap <silent> J :m '>+1<CR>gv=gv
-vnoremap <silent> K :m '<-2<CR>gv=gv
-nnoremap <C-f> :call w:FindWord()<CR>
-vnoremap y y :call system('xclip -sel clip -i', @0)<CR>
-
-inoremap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-    \ neosnippet#mappings#expand_or_jump_impl() :
-    \ pumvisible() ? "\<Down>" : "\<TAB>"
-
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-    \ neosnippet#mappings#expand_or_jump_impl() :
-    \ pumvisible() ? "\<Down>" : "\<TAB>"
-
-inoremap <expr><S-TAB> pumvisible() ? "\<Up>"   : "\<TAB>"
-inoremap <expr><Space> pumvisible() ? neocomplcache#smart_close_popup() . " " : "\<Space>"
-" nmap <C-]>  :exec 'tabe \| tjump! ' . expand('<cword>')<CR>
-" nmap <C-]> :call w:GoToTag(expand('<cword>'))<CR>
-" vmap <C-]> :call w:GoToTag(w:GetVisual())<CR>
 
 
 
@@ -267,21 +220,6 @@ omap / <Plug>(easymotion-tn)
 map  n <Plug>(easymotion-next)
 map  N <Plug>(easymotion-prev)
 map  <Plug>(easymotion-s2)
-
-
-" ======= Code Folding =======
-set foldmarker={,}
-set foldmethod=marker
-set foldcolumn=5
-
-
-"   nnoremap <C-]> :call g:GoToDefintion()<CR>
-"   function! g:GoToDefintion()
-"       tabnew
-"       let l:word = expand("<cword>")
-"       execute 'tjump '.l:word
-"       let @/ = l:word
-"   endfunction
 
 
 
