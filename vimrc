@@ -220,8 +220,10 @@ nnoremap <silent> <C-t> :tabnew<CR>
 nnoremap <silent> <C-e> :tabclose<CR>
 nnoremap <silent> <C-h> :tabprevious<CR>
 nnoremap <silent> <C-l> :tabnext<CR>
-nnoremap <silent> <S-h> :tabmove -1<CR>
-nnoremap <silent> <S-l> :tabmove +1<CR>
+" nnoremap <silent> <S-h> :tabmove -1<CR>
+" nnoremap <silent> <S-l> :tabmove +1<CR>
+nnoremap <silent> <S-h> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
+nnoremap <silent> <S-l> :execute 'silent! tabmove ' . tabpagenr()<CR>
 noremap <silent> <C-j> :call smooth_scroll#down(5, 0, 5)<CR>
 noremap <silent> <C-k> :call smooth_scroll#up(5, 0, 5)<CR>
 noremap ; :

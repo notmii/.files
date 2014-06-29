@@ -1,4 +1,4 @@
-function! s:phpAutocommand()
+function! w:phpAutocommand()
 
     if filereadable('php.tags')
         setlocal tags=php.tags
