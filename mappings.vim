@@ -28,12 +28,14 @@ vnoremap y y :call system('xclip -sel clip -i', @0)<CR>
 noremap yy yy :call system('xclip -sel clip -i', @0)<CR>
 noremap <silent> <f4> :TagbarToggle<CR>
 
+nnoremap <c-]> :CtrlPtjump<cr>
+vnoremap <c-]> :CtrlPtjumpVisual<cr>
+
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
 inoremap <expr><TAB> neosnippet#expandable_or_jumpable() ?
     \ neosnippet#mappings#expand_or_jump_impl() :
     \ pumvisible() ? "\<Down>" : "\<TAB>"
-
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
     \ neosnippet#mappings#expand_or_jump_impl() :
     \ pumvisible() ? "\<Down>" : "\<TAB>"

@@ -17,8 +17,8 @@ Plugin 'https://github.com/gmarik/Vundle.vim.git'
 Plugin 'https://github.com/scrooloose/nerdtree.git'
 Plugin 'https://github.com/jistr/vim-nerdtree-tabs.git'
 Plugin 'https://github.com/bling/vim-airline.git'
-Plugin 'https://github.com/mhinz/vim-signify.git'
-Plugin 'https://github.com/scrooloose/syntastic.git'
+" Plugin 'https://github.com/mhinz/vim-signify.git'
+" Plugin 'https://github.com/scrooloose/syntastic.git'
 Plugin 'https://github.com/tpope/vim-fugitive.git'
 Plugin 'https://github.com/terryma/vim-smooth-scroll.git'
 Plugin 'https://github.com/kien/ctrlp.vim.git'
@@ -35,7 +35,7 @@ Plugin 'https://github.com/tpope/vim-dispatch.git'
 " Plugin 'https://github.com/m2mdas/phpcomplete-extended.git'
 
 " C# Plugins
-Plugin 'https://github.com/nosami/Omnisharp.git'
+" Plugin 'https://github.com/nosami/Omnisharp.git'
 
 " Python plugins
 " Plugin 'https://github.com/davidhalter/jedi-vim.git'

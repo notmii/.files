@@ -11,18 +11,18 @@ echo $BASE_DIR
 
 sudo apt-get install -y cmake exuberant-ctags vim-tiny
 
-curl 'ftp://ftp.u-aizu.ac.jp/pub/eclipse/technology/epp/downloads/release/luna/R/eclipse-standard-luna-R-linux-gtk-x86_64.tar.gz' | sudo tar xzf --directory /opt/eclipse
-curl 'http://sourceforge.net/projects/eclim/files/eclim/2.3.4/eclim_2.3.4.jar/download' | java -jar
-
 git clone https://github.com/robbyrussell/oh-my-zsh.git     $BASE_DIR/oh-my-zsh
 git clone https://github.com/gmarik/Vundle.vim.git          $BASE_DIR/vim/bundle/Vundle.vim
 git clone https://github.com/garybernhardt/selecta.git      $BASE_DIR/selecta
-git clone https://github.com/Valloric/YouCompleteMe.git     $BASE_DIR/vim/bundle/YouCompleteMe
+# git clone https://github.com/Valloric/YouCompleteMe.git     $BASE_DIR/vim/bundle/YouCompleteMe
 
 echo "source $BASE_DIR/zshrc" >> ~/.zshrc
 echo "export PATH=\$PATH:$BASE_DIR/selecta" >> ~/.zshrc
 echo "source $BASE_DIR/vimrc" >> ~/.vimrc
 
-./$BASE_DIR/vim/bundle/YouCompleteMe/install.sh
+# (cd $BASE_DIR/vim/bundle/YouCompleteMe && git submodule update --init --recursive && ./install.sh)
+
+curl -O 'http://ftp.yz.yamagata-u.ac.jp/pub/eclipse//technology/epp/downloads/release/luna/R/eclipse-standard-luna-R-linux-gtk-x86_64.tar.gz'| sudo tar xzf --directory /opt
+curl -O 'http://downloads.sourceforge.net/project/eclim/eclim/2.3.4/eclim_2.3.4.jar?r=http%3A%2F%2Feclim.org%2Finstall.html&ts=1404089054&use_mirror=jaist' | java -jar
 
 cd $BASE_DIR

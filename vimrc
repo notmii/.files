@@ -4,19 +4,19 @@ let g:VIMRC_BASE_URL = resolve(expand('<sfile>:p:h'))
 exec 'source ' . g:VIMRC_BASE_URL . '/vundlerc.vim'
 exec 'source ' . g:VIMRC_BASE_URL . '/util-functions.vim'
 exec 'source ' . g:VIMRC_BASE_URL . '/mappings.vim'
-" exec 'source ' . g:VIMRC_BASE_URL . '/gvimrc.vim'
+exec 'source ' . g:VIMRC_BASE_URL . '/gvimrc.vim'
 
 set completeopt=longest,menuone,preview
 
 filetype plugin indent on
 au BufNewFile,BufRead *.tpl,*.smarty    set filetype=html
 au BufNewFile,BufRead *.less            set filetype=css
-au filetype css             setlocal omnifunc=csscomplete#CompleteCSS
-au filetype html,markdown   setlocal omnifunc=htmlcomplete#CompleteTags
-au filetype javascript,js   setlocal omnifunc=javascriptcomplete#CompleteJS
-au filetype python          setlocal omnifunc=pythoncomplete#Complete
-au FileType cs              nnoremap <F5> :wa!<cr>:OmniSharpBuildAsync<cr>
-au filetype xml             setlocal omnifunc=xmlcomplete#CompleteTags
+" au filetype css             setlocal omnifunc=csscomplete#CompleteCSS
+" au filetype html,markdown   setlocal omnifunc=htmlcomplete#CompleteTags
+" au filetype javascript,js   setlocal omnifunc=javascriptcomplete#CompleteJS
+" au filetype python          setlocal omnifunc=pythoncomplete#Complete
+" au FileType cs              nnoremap <F5> :wa!<cr>:OmniSharpBuildAsync<cr>
+" au filetype xml             setlocal omnifunc=xmlcomplete#CompleteTags
 " au filetype php             call w:phpAutocommand()
 au InsertEnter *            if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
 set autoread
@@ -38,9 +38,7 @@ au filetype xml             setlocal omnifunc=xmlcomplete#CompleteTags
 " au filetype php             call w:phpAutocommand()
 au filetype python          set foldmethod=indent
 
-" if filereadable('cscope.out')
-"     cs add cscope.out
-" endif
+
 
 " ====== TAGBAR Settings ===================
 let g:tagbar_autofocus                                  = 1
@@ -49,20 +47,39 @@ let g:tagbar_autopreview                                = 0
 let g:tagbar_compact                                    = 1
 let g:tagbar_show_visibility                            = 1
 
-"" ====== NEOComplCache =====================
-" let g:neocomplcache_enable_at_startup                   = 1
-" let g:neocomplcache_enable_smart_case                   = 1
-" let g:neocomplcache_min_syntax_length                   = 3
-" let g:neocomplcache_lock_buffer_name_pattern            = '\*ku\*'
-"
-" if !exists('g:neocomplcache_keyword_patterns')
-"     let g:neocomplcache_keyword_patterns = {}
-" endif
-" let g:neocomplcache_keyword_patterns['default'] = '[^. \t]->\h\w*\|\h\w*::\|new '
+
+
+" ===== SYNTASTIC SETTINGS ===========
+let g:syntastic_disabled_filetypes=['less', 'css']
+
+
+
+" ===== ECLIM SETTINGS ===============
+let g:EclimCompletionMethod = 'omnifunc'
+
 
 
 " ====== NEOSnippet ==========================
 let g:neosnippet#enable_preview             = 1
+
+
+
+" ====== NEOComplCache =====================
+let g:neocomplcache_enable_at_startup                   = 1
+let g:neocomplcache_enable_smart_case                   = 1
+let g:neocomplcache_min_syntax_length                   = 2
+let g:neocomplcache_lock_buffer_name_pattern            = '\*ku\*'
+
+if !exists('g:neocomplcache_keyword_patterns')
+    let g:neocomplcache_keyword_patterns = {}
+endif
+let g:neocomplcache_keyword_patterns['default'] = '[^. \t]->\w*\|\w*::\|new \w*'
+
+
+if !exists('g:neocomplcache_force_omni_patterns')
+    let g:neocomplcache_force_omni_patterns = {}
+endif
+let g:neocomplcache_force_omni_patterns.php = '[^. \t]->\w*\|\w*::\|new \w*'
 
 
 
@@ -142,7 +159,7 @@ syntax enable
 hi normal       ctermbg=none
 hi Pmenu        ctermbg=black       ctermfg=white
 hi PmenuSel     ctermbg=grey        ctermfg=black
-hi Search       ctermfg=black       ctermbg=yellow
+hi Search       ctermfg=15          ctermbg=8
 hi NonText      ctermfg=none        cterm=none
 hi CursorLine   ctermbg=none        cterm=underline
 hi CursorColumn ctermbg=236
@@ -220,6 +237,7 @@ omap / <Plug>(easymotion-tn)
 map  n <Plug>(easymotion-next)
 map  N <Plug>(easymotion-prev)
 map  <Plug>(easymotion-s2)
+
 
 
 
