@@ -10,18 +10,7 @@ update-production() {
     git checkout production
     git reset --hard production/master
 
-    # echo "Updating CSCOPE"
-    # find -type f  \( \
-    #     -name '*.js' \
-    #     -o -name '*.php' \
-    #     -o -name '*.css' \
-    #     -o -name '*.htm' \) \
-    #     -and -not \( -path "./scripts/build-assets/*" \
-    #         -o -path "./public/build/*" \) \
-    #     > cscope.files
-
-    # cscope -b -q -U -i cscope.files
-
+    echo "Updating CTAGS"
     find -type f  \( -name '*.php' \)                   \
         -and -not \( -path "./scripts/build-assets/*"   \
             -o -path "./public/build/*" \)              \
@@ -50,13 +39,6 @@ update-production() {
     [[ $HAS_CHANGES > 0 ]] && git stash pop
     clear
     git status
-}
-
-sgrep() {
-    for FILE in $(grep -lrs --exclude-dir=public/build --exclude-dir=scripts/build-assets --exclude=tags --exclude="cscope.*" --exclude="*.min.css" --exclude="*.min.less" $2 "$1" .); do
-        echo -e "\n\e[1;33m$FILE\e[0m"
-        cat $FILE | grep -C 1 -ns --color=always $2 "$1" | sed 's/^/    /' -u -l 50
-    done
 }
 
 nginx-restart() {
