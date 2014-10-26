@@ -1,6 +1,6 @@
 BASE_DIR=$(dirname $(readlink -f $0))
 
-alias=$BASE_DIR/aliases.sh
+alias=$BASE_DIR/alias.sh
 customs=$BASE_DIR/customs.sh
 selecta=$BASE_DIR/selecta
 zshrc=$BASE_DIR/zshrc
