@@ -14,7 +14,7 @@ curl 'ftp://ftp.u-aizu.ac.jp/pub/eclipse/technology/epp/downloads/release/luna/R
 curl 'http://sourceforge.net/projects/eclim/files/eclim/2.3.4/eclim_2.3.4.jar/download' | java -jar
 
 git clone https://github.com/robbyrussell/oh-my-zsh.git     $BASE_DIR/bash.config/oh-my-zsh
-git clone https://github.com/garybernhardt/selecta.git      $BASE_DIR/basg.config/selecta
+git clone https://github.com/garybernhardt/selecta.git      $BASE_DIR/bash.config/selecta
 git clone https://github.com/gmarik/Vundle.vim.git          $BASE_DIR/vim.config/vim/bundle/Vundle.vim
 
 echo "source $BASE_DIR/bash.config/main.sh" >> ~/.zshrc

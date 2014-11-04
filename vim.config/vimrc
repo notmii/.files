@@ -102,6 +102,8 @@ let g:ctrlp_match_window_bottom     = 1
 let g:ctrlp_max_files               = 0
 let g:ctrlp_open_new_file           = 't'
 let g:ctrlp_open_multiple_files     = 'tjr'
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+let g:ctrlp_lazy_update             = 1
 
 
 

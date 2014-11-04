@@ -23,10 +23,11 @@ Plugin 'https://github.com/tpope/vim-fugitive.git'
 Plugin 'https://github.com/terryma/vim-smooth-scroll.git'
 Plugin 'https://github.com/kien/ctrlp.vim.git'
 Plugin 'https://github.com/ivalkeen/vim-ctrlp-tjump.git'
+Plugin 'https://github.com/FelikZ/ctrlp-py-matcher.git'
 Plugin 'https://github.com/elzr/vim-json.git'
 Plugin 'https://github.com/majutsushi/tagbar.git'
 Plugin 'https://github.com/xolox/vim-misc.git'
-Plugin 'https://github.com/xolox/vim-easytags.git'
+" Plugin 'https://github.com/xolox/vim-easytags.git'
 Plugin 'https://github.com/tpope/vim-dispatch.git'
 
 " PHP plugins
