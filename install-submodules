@@ -8,7 +8,9 @@ done
 BASE_DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 echo $BASE_DIR
 
-sudo apt-get install -y cmake exuberant-ctags vim-tiny
+sudo apt-get install -y cmake exuberant-ctags vim tmux zsh
+
+chsh -s /bin/zsh
 
 curl 'ftp://ftp.u-aizu.ac.jp/pub/eclipse/technology/epp/downloads/release/luna/R/eclipse-standard-luna-R-linux-gtk-x86_64.tar.gz' | sudo tar xzf --directory /opt/eclipse
 curl 'http://sourceforge.net/projects/eclim/files/eclim/2.3.4/eclim_2.3.4.jar/download' | java -jar
@@ -20,5 +22,6 @@ git clone https://github.com/gmarik/Vundle.vim.git          $BASE_DIR/vim.config
 echo "source $BASE_DIR/bash.config/main.sh" >> ~/.zshrc
 echo "source $BASE_DIR/vim.config/vimrc" >> ~/.vimrc
 ln -s $BASE_DIR/vim.config/vim ~/.vim
+ln -s $BASE_DIR/tmux.config/tmux.conf ~/.tmux.conf
 
 cd $BASE_DIR
