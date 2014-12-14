@@ -10,10 +10,10 @@ echo $BASE_DIR
 
 sudo apt-get install -y cmake exuberant-ctags vim tmux zsh
 
-chsh -s /bin/zsh
+sudo chsh -s /bin/zsh $USER
 
-curl 'ftp://ftp.u-aizu.ac.jp/pub/eclipse/technology/epp/downloads/release/luna/R/eclipse-standard-luna-R-linux-gtk-x86_64.tar.gz' | sudo tar xzf --directory /opt/eclipse
-curl 'http://sourceforge.net/projects/eclim/files/eclim/2.3.4/eclim_2.3.4.jar/download' | java -jar
+# curl 'ftp://ftp.u-aizu.ac.jp/pub/eclipse/technology/epp/downloads/release/luna/R/eclipse-standard-luna-R-linux-gtk-x86_64.tar.gz' | sudo tar xzf --directory /opt/eclipse
+# curl 'http://sourceforge.net/projects/eclim/files/eclim/2.3.4/eclim_2.3.4.jar/download' | java -jar
 
 git clone https://github.com/robbyrussell/oh-my-zsh.git     $BASE_DIR/bash.config/oh-my-zsh
 git clone https://github.com/garybernhardt/selecta.git      $BASE_DIR/bash.config/selecta
@@ -23,5 +23,7 @@ echo "source $BASE_DIR/bash.config/main.sh" >> ~/.zshrc
 echo "source $BASE_DIR/vim.config/vimrc" >> ~/.vimrc
 ln -s $BASE_DIR/vim.config/vim ~/.vim
 ln -s $BASE_DIR/tmux.config/tmux.conf ~/.tmux.conf
+
+vim +PluginInstall +qall
 
 cd $BASE_DIR
