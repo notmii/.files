@@ -72,7 +72,8 @@ endfunction
 
 function! SelectaCommand()
     try
-        silen let selection = system('find|selecta')
+        " silen let selection = system('find|selecta')
+        silen let selection = system('fzf')
     catch /Vim:Interrupt/
         redraw!
         return
