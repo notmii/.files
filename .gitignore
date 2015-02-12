@@ -4,3 +4,4 @@ vim.config/vim/.netrwhist
 
 bash.config/selecta
 bash.config/oh-my-zsh
+bash.config/fzf
