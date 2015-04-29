@@ -16,7 +16,6 @@ sudo chsh -s /bin/zsh $USER
 # curl 'http://sourceforge.net/projects/eclim/files/eclim/2.3.4/eclim_2.3.4.jar/download' | java -jar
 
 git clone https://github.com/robbyrussell/oh-my-zsh.git     $BASE_DIR/bash.config/oh-my-zsh
-git clone https://github.com/garybernhardt/selecta.git      $BASE_DIR/bash.config/selecta
 git clone https://github.com/gmarik/Vundle.vim.git          $BASE_DIR/vim.config/vim/bundle/Vundle.vim
 git clone https://github.com/junegunn/fzf.git               $BASE_DIR/vim.config/vim/fzf.vim
 
