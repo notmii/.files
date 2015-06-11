@@ -8,7 +8,7 @@ Plugin 'https://github.com/vim-scripts/HTML-AutoCloseTag.git'
 Plugin 'https://github.com/vim-scripts/matchit.zip.git'
 Plugin 'https://github.com/tpope/vim-surround.git'
 Plugin 'https://github.com/terryma/vim-multiple-cursors.git'
-Plugin 'https://github.com/scrooloose/nerdcommenter.git'
+" Plugin 'https://github.com/scrooloose/nerdcommenter.git'
 Plugin 'https://github.com/Shougo/neosnippet.vim.git'
 Plugin 'https://github.com/Shougo/neocomplcache.vim.git'
 
