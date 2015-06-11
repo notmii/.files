@@ -41,12 +41,7 @@ let g:tagbar_show_visibility                            = 1
 
 
 " ===== SYNTASTIC SETTINGS ===========
-let g:syntastic_disabled_filetypes=['less', 'css']
-
-
-
-" ===== ECLIM SETTINGS ===============
-let g:EclimCompletionMethod = 'omnifunc'
+let g:syntastic_disabled_filetypes   =['less', 'css']
 
 
 
@@ -84,28 +79,34 @@ let g:nerdtree_tabs_open_on_console_startup = 0
 let g:nerdtree_tabs_smart_startup_focus     = 1
 let g:nerdtree_tabs_autoclose               = 1
 let g:nerdtree_tabs_focus_on_files          = 1
-nnoremap <silent> <F3> :NERDTreeTabsToggle<CR>
 
 
 
 " ====== CtrlP Settings ======================
 let g:ctrlp_map                     = '<c-p>'
-let g:ctrlp_cmp                     = '<CtrlPMixed>'
-let g:ctrlp_user_command            = 'find %s -type f'
 let g:ctrlp_regexp                  = 1
 let g:ctrlp_match_window_bottom     = 1
 let g:ctrlp_max_files               = 0
 let g:ctrlp_open_new_file           = 't'
 let g:ctrlp_open_multiple_files     = 'tjr'
-" let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 let g:ctrlp_lazy_update             = 1
+
+let g:ctrlp_user_command            = 'find %s -type f'
+
+if system('which ag') =~ 'ag'
+  let g:ctrlp_user_command = 'ag %s -g "" --nocolor --nogroup'
+endif
+
+if system('git rev-parse --is-inside-work-tree') =~ 'true'
+  let g:ctrlp_user_command = 'cd %s && git ls-files'
+endif
 
 set rtp+=~/configurations/bash.config/fzf
 
 
 " ======= Airline & Status line Settings =====
-set laststatus=2
-let g:airline_theme="dark"
+set laststatus          =2
+let g:airline_theme     ="dark"
 let g:airline#extensions#tabline#enabled    = 1
 let g:airline#extensions#syntastic#enabled  = 1
 let g:airline#extensions#branch#enabled     = 1
@@ -238,8 +239,8 @@ map  <Plug>(easymotion-s2)
 
 
 
-
 " ====== Project Specific Settings ===========
 if filereadable("_vimrc") && has("vim_starting")
     source _vimrc
 endif
+

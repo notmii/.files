@@ -34,6 +34,7 @@ nnoremap <c-]> :CtrlPtjump<cr>
 vnoremap <c-]> :CtrlPtjumpVisual<cr>
 nnoremap <c-\> :CtrlPBuffer<cr>
 vnoremap <c-\> :CtrlPBuffer<cr>
+nnoremap <silent> <F3> :NERDTreeTabsToggle<CR>
 
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
