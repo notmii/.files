@@ -2,10 +2,12 @@
 let mapleader=','
 nnoremap <silent> <C-t> :tabnew<CR>
 nnoremap <silent> <C-e> :tabclose<CR>
-nnoremap <silent> <C-h> :tabprevious<CR>
-nnoremap <silent> <C-l> :tabnext<CR>
-nnoremap <silent> <S-h> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
-nnoremap <silent> <S-l> :execute 'silent! tabmove ' . tabpagenr()<CR>
+nnoremap <silent> <S-h> :tabprevious<CR>
+nnoremap <silent> <S-l> :tabnext<CR>
+nnoremap <silent> <C-h> :bprevious<CR>
+nnoremap <silent> <C-l> :bnext<CR>
+" nnoremap <silent> <S-h> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
+" nnoremap <silent> <S-l> :execute 'silent! tabmove ' . tabpagenr()<CR>
 noremap <silent> <C-j> :call smooth_scroll#down(5, 0, 5)<CR>
 noremap <silent> <C-k> :call smooth_scroll#up(5, 0, 5)<CR>
 noremap ; :
@@ -30,6 +32,8 @@ noremap <silent> <f4> :TagbarToggle<CR>
 
 nnoremap <c-]> :CtrlPtjump<cr>
 vnoremap <c-]> :CtrlPtjumpVisual<cr>
+nnoremap <c-\> :CtrlPBuffer<cr>
+vnoremap <c-\> :CtrlPBuffer<cr>
 
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
@@ -41,4 +45,3 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
     \ pumvisible() ? "\<Down>" : "\<TAB>"
 
 inoremap <expr><S-TAB> pumvisible() ? "\<Up>"   : "\<TAB>"
-" inoremap <expr><Space> pumvisible() ? neocomplcache#smart_close_popup() . " " : "\<Space>"
