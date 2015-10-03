@@ -8,7 +8,7 @@ done
 BASE_DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 echo $BASE_DIR
 
-sudo apt-get install -y cmake exuberant-ctags vim tmux zsh
+sudo apt-get install -y cmake exuberant-ctags vim tmux zsh silversearcher-ag
 
 sudo chsh -s /bin/zsh $USER
 
