@@ -1,11 +1,8 @@
 " ======= MAPPINGS ================
 let mapleader=','
-nnoremap <silent> <C-t> :tabnew<CR>
 nnoremap <silent> <C-e> :bdelete<CR>
-nnoremap <silent> <C-h> :bprev<CR>
 nnoremap <silent> <C-l> :bnext<CR>
-nnoremap <silent> <S-h> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
-nnoremap <silent> <S-l> :execute 'silent! tabmove ' . tabpagenr()<CR>
+nnoremap <silent> <C-h> :bprevious<CR>
 noremap <silent> <C-j> :call smooth_scroll#down(5, 0, 5)<CR>
 noremap <silent> <C-k> :call smooth_scroll#up(5, 0, 5)<CR>
 noremap ; :
@@ -25,7 +22,7 @@ vnoremap <silent> J :m '>+1<CR>gv=gv
 vnoremap <silent> K :m '<-2<CR>gv=gv
 vnoremap y y :call system('xclip -sel clip -i', @0)<CR>
 noremap yy yy :call system('xclip -sel clip -i', @0)<CR>
-noremap <silent> <f4> :TagbarToggle<CR>
+noremap <silent> <F4> :TagbarToggle<CR>
 
 nnoremap <c-]> :CtrlPtjump<cr>
 vnoremap <c-]> :CtrlPtjumpVisual<cr>
@@ -43,7 +40,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
     \ pumvisible() ? "\<Down>" : "\<TAB>"
 
 inoremap <expr><S-TAB> pumvisible() ? "\<Up>"   : "\<TAB>"
-" inoremap <expr><Space> pumvisible() ? neocomplcache#smart_close_popup() . " " : "\<Space>"
+
 
 
 " ===== EASY MOTION SETTINGS =========

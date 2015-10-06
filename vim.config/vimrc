@@ -13,9 +13,7 @@ let php_sql_query       =1
 let php_htmlInStrings   =1
 
 filetype plugin indent on
-au BufNewFile,BufRead *.tpl     set filetype=html
-au BufNewFile,BufRead *.smarty  set filetype=html
-au BufNewFile,BufRead *.volt    set filetype=html
+au BufNewFile,BufRead *.tpl,*.smarty,*.volt set filetype=html
 au BufNewFile,BufRead *.less    set filetype=css
 au BufNewFile,BufRead *.mq4     set filetype=mql4
 
@@ -182,6 +180,7 @@ set softtabstop=4
 set shiftwidth=4
 set autoindent
 set cindent
+set hidden
 
 set showcmd                 " Show the command being type
 set nowrap                  " Set to no wrapping
