@@ -13,6 +13,7 @@ Plugin 'https://github.com/FelikZ/ctrlp-py-matcher.git'
 Plugin 'https://github.com/scrooloose/nerdcommenter.git'
 Plugin 'https://github.com/Shougo/neosnippet.vim.git'
 Plugin 'https://github.com/Shougo/neocomplcache.vim.git'
+Plugin 'https://github.com/rking/ag.vim.git'
 
 " Utility plugins
 Plugin 'https://github.com/gmarik/Vundle.vim.git'
