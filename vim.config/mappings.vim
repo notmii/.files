@@ -5,6 +5,9 @@ nnoremap <silent> <C-l> :bnext<CR>
 nnoremap <silent> <C-h> :bprevious<CR>
 noremap <silent> <C-j> :call smooth_scroll#down(5, 0, 5)<CR>
 noremap <silent> <C-k> :call smooth_scroll#up(5, 0, 5)<CR>
+noremap <silent> <C-PageUp> :tabnext<CR>
+noremap <silent> <C-PageDown> :tabprevious<CR>
+
 noremap ; :
 nnoremap j gj
 nnoremap k gk

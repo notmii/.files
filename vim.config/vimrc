@@ -37,7 +37,6 @@ exec 'source ' . g:VIMRC_BASE_URL . '/plugin/airline.vim'
 exec 'source ' . g:VIMRC_BASE_URL . '/plugin/signify.vim'
 exec 'source ' . g:VIMRC_BASE_URL . '/theme.vim'
 
-
 " Set the clipboard as the default storage of copy
 if has('unnamedplus')
     set clipboard=unnamedplus
@@ -45,14 +44,10 @@ else
     set clipboard=unnamed       " Set the clipboard as the default storage of copy
 endif
 
-
-
 " Fixed for slow vertical scrooling when vertical split is applied
 set ttyfast
 set ttyscroll=5
 set scrolljump=1
-
-
 
 " ======= BACKUP SETTINGS =========
 set noswapfile
@@ -60,10 +55,12 @@ set nobackup
 " Sets where vim-session files will be stored
 exec 'set dir='.g:VIMRC_BASE_URL.'/sessions/'
 
-
+if executable("ag")
+    set grepprg=ag\ --nogroup\ --nocolor\ --column
+    set grepformat=%f:%l:%c:%m
+endif
 
 " ====== Project Specific Settings ===========
 if filereadable("_vimrc") && has("vim_starting")
     source _vimrc
 endif
-

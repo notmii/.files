@@ -26,6 +26,7 @@ Plugin 'https://github.com/majutsushi/tagbar.git'
 Plugin 'https://github.com/xolox/vim-misc.git'
 Plugin 'https://github.com/xolox/vim-notes.git'
 Plugin 'https://github.com/tpope/vim-dispatch.git'
+Plugin 'https://github.com/vim-scripts/EasyGrep.git'
 
 " Extra File Type Support
 Plugin 'https://github.com/elzr/vim-json.git'

@@ -19,14 +19,14 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git web-search)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
 # Lines configured by zsh-newuser-install
 HISTFILE=$HOME/.histfile
-HISTSIZE=100000
-SAVEHIST=100000
+HISTSIZE=500
+SAVEHIST=500
 setopt appendhistory beep nomatch notify
 unsetopt autocd extendedglob
 bindkey -e

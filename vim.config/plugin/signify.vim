@@ -1,5 +1,5 @@
 " ======= VIM Signify settings ===============
-let g:signify_vcs_list = [ 'git' ]
+let g:signify_vcs_list = ['git']
 let g:signify_difftool = 'meld'
 let g:signify_sign_add               = '+'
 let g:signify_sign_change            = '!'
