@@ -37,6 +37,8 @@ exec 'source ' . g:VIMRC_BASE_URL . '/plugin/airline.vim'
 exec 'source ' . g:VIMRC_BASE_URL . '/plugin/signify.vim'
 exec 'source ' . g:VIMRC_BASE_URL . '/theme.vim'
 
+command! -nargs=* Ag Grepper -noprompt -tool ag -grepprg ag --vimgrep <args> %
+
 " Set the clipboard as the default storage of copy
 if has('unnamedplus')
     set clipboard=unnamedplus

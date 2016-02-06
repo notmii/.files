@@ -1,6 +1,6 @@
 " ======= MAPPINGS ================
 let mapleader=','
-nnoremap <silent> <C-e> :bdelete<CR>
+nnoremap <silent> <C-e> :bprevious\|bdelete #<CR>
 nnoremap <silent> <C-l> :bnext<CR>
 nnoremap <silent> <C-h> :bprevious<CR>
 noremap <silent> <C-j> :call smooth_scroll#down(5, 0, 5)<CR>
