@@ -32,4 +32,6 @@ Plugin 'https://github.com/vim-scripts/EasyGrep.git'
 Plugin 'https://github.com/elzr/vim-json.git'
 Plugin 'https://github.com/vobornik/vim-mql4.git'
 
+Plugin 'https://github.com/isRuslan/vim-es6.git'
+
 call vundle#end()
