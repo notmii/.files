@@ -3,7 +3,7 @@ BASE_DIR=$(dirname $(readlink -f $0))
 ZSH=$BASE_DIR/oh-my-zsh
 ZSH_THEME="candy"
 
-export UPDATE_ZSH_DAYS=1
+export UPDATE_ZSH_DAYS=5
 
 # Uncomment following line if you want to disable command autocorrection
 # DISABLE_CORRECTION="true"
@@ -19,7 +19,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(gitfast)
+plugins=(gitfast zsh_reload vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -29,7 +29,6 @@ HISTSIZE=500
 SAVEHIST=500
 setopt appendhistory beep nomatch notify
 unsetopt autocd extendedglob
-bindkey -e
 # End of lines configured by zsh-newuser-install
 
 # The following lines were added by compinstall
@@ -37,5 +36,3 @@ zstyle :compinstall filename "$HOME.zshrc"
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
-
-setopt auto_cd
