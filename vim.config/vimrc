@@ -1,6 +1,7 @@
 set nocompatible
 let g:VIMRC_BASE_URL = resolve(expand('<sfile>:p:h'))
 
+exec 'source ' . g:VIMRC_BASE_URL . '/util.vim'
 exec 'source ' . g:VIMRC_BASE_URL . '/vundlerc.vim'
 exec 'source ' . g:VIMRC_BASE_URL . '/mappings.vim'
 exec 'source ' . g:VIMRC_BASE_URL . '/gvimrc.vim'
@@ -12,20 +13,32 @@ set foldcolumn=5
 let php_sql_query       =1
 let php_htmlInStrings   =1
 
+set expandtab
+set shiftwidth=4
+set tabstop=4
+
+set autoread
+
 filetype plugin indent on
 au BufNewFile,BufRead *.tpl,*.smarty,*.volt set filetype=html
 au BufNewFile,BufRead *.less    set filetype=css
 au BufNewFile,BufRead *.mq4     set filetype=mql4
+au BufNewFile,BufRead *.thrift  set filetype=thrift
+" au BufReadPost fugitive://*     set bufhidden=delete
 
 au filetype css             setlocal omnifunc=csscomplete#CompleteCSS
-au filetype html,markdown   setlocal omnifunc=htmlcomplete#CompleteTags
-au filetype javascript,js   setlocal omnifunc=javascriptcomplete#CompleteJS
+au filetype html,markdown   call HtmlSettings()
+au filetype javascript,js   call JsSettings()
 au filetype python          setlocal omnifunc=pythoncomplete#Complete
 au filetype php             setlocal omnifunc=phpcomplete#CompletePHP
 au filetype xml             setlocal omnifunc=xmlcomplete#CompleteTags
 au filetype python          set foldmethod=indent
 au InsertEnter *            if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
-set autoread
+
+augroup qf
+    autocmd!
+    autocmd FileType qf set nobuflisted
+augroup end
 
 set rtp+=~/configurations/bash.config/fzf
 
@@ -35,6 +48,7 @@ exec 'source ' . g:VIMRC_BASE_URL . '/plugin/nerd-tree.vim'
 exec 'source ' . g:VIMRC_BASE_URL . '/plugin/ctrlp.vim'
 exec 'source ' . g:VIMRC_BASE_URL . '/plugin/airline.vim'
 exec 'source ' . g:VIMRC_BASE_URL . '/plugin/signify.vim'
+exec 'source ' . g:VIMRC_BASE_URL . '/plugin/syntastic.vim'
 exec 'source ' . g:VIMRC_BASE_URL . '/theme.vim'
 
 command! -nargs=* Ag Grepper -noprompt -tool ag -grepprg ag --vimgrep <args> %
@@ -66,3 +80,4 @@ endif
 if filereadable("_vimrc") && has("vim_starting")
     source _vimrc
 endif
+
