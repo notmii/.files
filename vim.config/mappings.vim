@@ -43,12 +43,3 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
     \ pumvisible() ? "\<Down>" : "\<TAB>"
 
 inoremap <expr><S-TAB> pumvisible() ? "\<Up>"   : "\<TAB>"
-
-
-
-" ===== EASY MOTION SETTINGS =========
-map  / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
-map  n <Plug>(easymotion-next)
-map  N <Plug>(easymotion-prev)
-map  <Plug>(easymotion-s2)

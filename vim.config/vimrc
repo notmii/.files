@@ -49,6 +49,7 @@ exec 'source ' . g:VIMRC_BASE_URL . '/plugin/ctrlp.vim'
 exec 'source ' . g:VIMRC_BASE_URL . '/plugin/airline.vim'
 exec 'source ' . g:VIMRC_BASE_URL . '/plugin/signify.vim'
 exec 'source ' . g:VIMRC_BASE_URL . '/plugin/syntastic.vim'
+exec 'source ' . g:VIMRC_BASE_URL . '/plugin/easymotion.vim'
 exec 'source ' . g:VIMRC_BASE_URL . '/theme.vim'
 
 command! -nargs=* Ag Grepper -noprompt -tool ag -grepprg ag --vimgrep <args> %

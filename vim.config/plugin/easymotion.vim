@@ -1,5 +1,6 @@
-map  / <Plug>(easymotion-sn)
-omap / <Plug>(easymotion-tn)
+let g:EasyMotion_do_mapping = 0
+
+map / <Plug>(easymotion-sn)
+map ? <Plug>(easymotion-sn)
 map  n <Plug>(easymotion-next)
 map  N <Plug>(easymotion-prev)
-map  <Plug>(easymotion-s2)
